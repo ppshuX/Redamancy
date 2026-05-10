@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全国计算机二级 MS Office 背书网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .category-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .category-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .flashcard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 40px 30px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-next {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-prev:hover {
+            background: #ddd;
+        }
+
+        .btn-next:hover {
+            background: #5568d3;
+        }
+
+        .btn-mark {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-mark:hover {
+            background: #ff5252;
+        }
+
+        .btn-mark.marked {
+            background: #4ecdc4;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .review-mode {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .btn-review {
+            background: #ffc107;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .btn-review:hover {
+            background: #ffb300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 二级 MS Office 背书</h1>
+        <div class="subtitle">点击卡片翻转查看答案</div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 0</div>
+
+        <div class="category-selector" id="categorySelector"></div>
+
+        <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="card-number" id="cardNumber">1 / 0</div>
+            <div id="cardContent">请选择分类开始背书</div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-prev" onclick="prevCard()">⬅ 上一题</button>
+            <button class="btn btn-mark" id="markBtn" onclick="toggleMark()">⭐ 标记</button>
+            <button class="btn btn-next" onclick="nextCard()">下一题 ➡</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalCards">0</div>
+                <div class="stat-label">总题数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="reviewCards">0</div>
+                <div class="stat-label">待复习</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="markedCards">0</div>
+                <div class="stat-label">已标记</div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-action" onclick="shuffleCards()">🔀 随机排序</button>
+            <button class="btn-action" onclick="resetProgress()">🔄 重置进度</button>
+            <button class="btn-action" onclick="showReviewMode()">📝 复习标记</button>
+        </div>
+
+        <div class="review-mode" id="reviewMode" style="display: none;">
+            <strong>📝 复习模式</strong>
+            <p>已标记 <span id="reviewCount">0</span> 道题待复习</p>
+            <button class="btn btn-review" onclick="startReview()">开始复习</button>
+        </div>
+    </div>
+
+    <script>
+        // 题库数据（示例）
+        const questionBank = {
+            "公共基础知识": [
+                {
+                    question: "算法的四个基本特征是什么？",
+                    answer: "可行性、确定性、有穷性、拥有足够的情报（输入/输出）"
+                },
+                {
+                    question: "栈的特点是什么？",
+                    answer: "先进后出（FILO）或后进先出（LIFO）"
+                },
+                {
+                    question: "队列的特点是什么？",
+                    answer: "先进先出（FIFO）"
+                },
+                {
+                    question: "二叉树的性质：叶子结点和度为2的结点有什么关系？",
+                    answer: "叶子结点数 = 度为2的结点数 + 1"
+                },
+                {
+                    question: "冒泡排序最坏情况下需要比较多少次？",
+                    answer: "n(n-1)/2 次"
+                },
+                {
+                    question: "软件测试的目的是什么？",
+                    answer: "发现错误，而不是证明程序是正确的"
+                },
+                {
+                    question: "模块独立性的两个定性指标是什么？",
+                    answer: "耦合性（低耦合好）和内聚性（高内聚好）"
+                },
+                {
+                    question: "数据库系统的核心是什么？",
+                    answer: "数据库管理系统（DBMS）"
+                },
+                {
+                    question: "E-R图中，实体、属性、联系分别用什么图形表示？",
+                    answer: "矩形表示实体，椭圆表示属性，菱形表示联系"
+                },
+                {
+                    question: "结构化程序设计的三种基本结构是什么？",
+                    answer: "顺序结构、选择结构（分支结构）、循环结构"
+                }
+            ],
+            "Word 知识点": [
+                {
+                    question: "如何设置首行缩进2字符？",
+                    answer: "右键段落 → 缩进和间距 → 特殊格式 → 首行缩进 → 2字符"
+                },
+                {
+                    question: "如何自动生成目录？",
+                    answer: "1. 为标题设置标题样式（标题1、标题2等）<br>2. 引用选项卡 → 目录 → 自动目录"
+                },
+                {
+                    question: "分节符有哪些类型？",
+                    answer: "下一页（插入分节符并分页）、连续（插入分节符但不分页）、偶数页、奇数页"
+                },
+                {
+                    question: "如何设置首页不同的页眉页脚？",
+                    answer: "双击页眉区域 → 页眉和页脚工具 → 设计选项卡 → 勾选'首页不同'"
+                },
+                {
+                    question: "邮件合并的步骤？",
+                    answer: "1. 准备主文档<br>2. 准备数据源（Excel表格）<br>3. 邮件选项卡 → 选择收件人<br>4. 插入合并域<br>5. 完成并合并"
+                }
+            ],
+            "Excel 函数": [
+                {
+                    question: "VLOOKUP函数的语法？",
+                    answer: "=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])<br>lookup_value：要查找的值<br>table_array：查找区域<br>col_index_num：返回第几列<br>range_lookup：FALSE为精确匹配，TRUE为模糊匹配"
+                },
+                {
+                    question: "SUMIF函数的用法？",
+                    answer: "=SUMIF(range, criteria, [sum_range])<br>示例：=SUMIF(A1:A10,\">60\",B1:B10)<br>对A1:A10中大于60的对应B列求和"
+                },
+                {
+                    question: "IF函数的语法？",
+                    answer: "=IF(logical_test, value_if_true, value_if_false)<br>示例：=IF(A1>=60,\"及格\",\"不及格\")"
+                },
+                {
+                    question: "如何引用绝对地址？",
+                    answer: "使用$符号，如$A$1<br>按F4键可以快速切换引用方式"
+                },
+                {
+                    question: "INDEX和MATCH组合的用法？",
+                    answer: "=INDEX(返回区域, MATCH(查找值, 查找区域, 0))<br>比VLOOKUP更灵活，可以从右向左查找"
+                }
+            ],
+            "Excel 数据透视表": [
+                {
+                    question: "数据透视表的四个区域？",
+                    answer: "筛选器、列、行、值"
+                },
+                {
+                    question: "如何创建数据透视表？",
+                    answer: "1. 选中数据源<br>2. 插入选项卡 → 数据透视表<br>3. 确认数据区域和放置位置<br>4. 拖动字段到四个区域"
+                },
+                {
+                    question: "如何更改值字段的汇总方式？",
+                    answer: "右键点击值区域 → 值字段设置 → 选择汇总方式（求和、计数、平均值等）"
+                },
+                {
+                    question: "使用分类汇总前必须做什么？",
+                    answer: "必须先按分类字段排序，否则分类汇总结果会不正确"
+                }
+            ],
+            "PPT 知识点": [
+                {
+                    question: "如何进入幻灯片母版视图？",
+                    answer: "视图选项卡 → 母版视图组 → 幻灯片母版"
+                },
+                {
+                    question: "动画的四种类型？",
+                    answer: "进入动画、强调动画、退出动画、动作路径"
+                },
+                {
+                    question: "动画的开始方式有哪三种？",
+                    answer: "单击开始、与上一个动画同时、上一个动画之后"
+                },
+                {
+                    question: "如何从当前幻灯片开始放映？",
+                    answer: "按 Shift + F5"
+                },
+                {
+                    question: "如何设置幻灯片切换效果？",
+                    answer: "切换选项卡 → 切换到此幻灯片组 → 选择切换效果"
+                }
+            ],
+            "快捷键": [
+                {
+                    question: "Word中，居中对齐的快捷键？",
+                    answer: "Ctrl + E"
+                },
+                {
+                    question: "Excel中，自动求和的快捷键？",
+                    answer: "Alt + ="
+                },
+                {
+                    question: "PPT中，新建幻灯片的快捷键？",
+                    answer: "Ctrl + M"
+                },
+                {
+                    question: "在Office中，保存的快捷键？",
+                    answer: "Ctrl + S"
+                },
+                {
+                    question: "在Excel中，从当前单元格向上、下、左、右快速移动到数据边缘的快捷键？",
+                    answer: "Ctrl + 方向键（上、下、左、右）"
+                }
+            ]
+        };
+
+        let currentCategory = '';
+        let currentIndex = 0;
+        let cards = [];
+        let markedCards = new Set();
+        let isFlipped = false;
+
+        // 初始化分类选择器
+        function initCategories() {
+            const selector = document.getElementById('categorySelector');
+            selector.innerHTML = '';
+            
+            Object.keys(questionBank).forEach((category, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'category-btn' + (index === 0 ? ' active' : '');
+                btn.textContent = category;
+                btn.onclick = () => selectCategory(category);
+                selector.appendChild(btn);
+            });
+
+            // 默认选中第一个分类
+            if (Object.keys(questionBank).length > 0) {
+                selectCategory(Object.keys(questionBank)[0]);
+            }
+        }
+
+        // 选择分类
+        function selectCategory(category) {
+            currentCategory = category;
+            cards = [...questionBank[category]];
+            currentIndex = 0;
+            isFlipped = false;
+
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === category);
+            });
+
+            updateCard();
+            updateStats();
+        }
+
+        // 更新卡片
+        function updateCard() {
+            const card = document.getElementById('flashcard');
+            const content = document.getElementById('cardContent');
+            const cardNumber = document.getElementById('cardNumber');
+            
+            if (cards.length === 0) {
+                content.innerHTML = '该分类暂无题目';
+                cardNumber.textContent = '0 / 0';
+                return;
+            }
+
+            const currentCard = cards[currentIndex];
+            content.innerHTML = isFlipped ? currentCard.answer : currentCard.question;
+            
+            if (isFlipped) {
+                card.classList.add('flipped');
+            } else {
+                card.classList.remove('flipped');
+            }
+
+            cardNumber.textContent = `${currentIndex + 1} / ${cards.length}`;
+            updateProgress();
+        }
+
+        // 翻转卡片
+        function flipCard() {
+            if (cards.length === 0) return;
+            isFlipped = !isFlipped;
+            updateCard();
+        }
+
+        // 上一题
+        function prevCard() {
+            if (cards.length === 0) return;
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            isFlipped = false;
+            updateCard();
+        }
+
+        // 下一题
+        function nextCard() {
+            if (cards.length === 0) return;
+            currentIndex = (currentIndex + 1) % cards.length;
+            isFlipped = false;
+            updateCard();
+        }
+
+        // 标记/取消标记
+        function toggleMark() {
+            if (cards.length === 0) return;
+            
+            const cardId = `${currentCategory}-${currentIndex}`;
+            if (markedCards.has(cardId)) {
+                markedCards.delete(cardId);
+            } else {
+                markedCards.add(cardId);
+            }
+            
+            updateMarkButton();
+            updateStats();
+            saveProgress();
+        }
+
+        // 更新标记按钮
+        function updateMarkButton() {
+            const btn = document.getElementById('markBtn');
+            const cardId = `${currentCategory}-${currentIndex}`;
+            
+            if (markedCards.has(cardId)) {
+                btn.textContent = '⭐ 已标记';
+                btn.classList.add('marked');
+            } else {
+                btn.textContent = '⭐ 标记';
+                btn.classList.remove('marked');
+            }
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const progress = document.getElementById('progress');
+            const progressText = document.getElementById('progressText');
+            
+            if (cards.length === 0) {
+                progress.style.width = '0%';
+                progressText.textContent = '0 / 0';
+                return;
+            }
+
+            const percent = ((currentIndex + 1) / cards.length) * 100;
+            progress.style.width = percent + '%';
+            progressText.textContent = `${currentIndex + 1} / ${cards.length}`;
+        }
+
+        // 更新统计
+        function updateStats() {
+            const totalCards = Object.values(questionBank).reduce((sum, arr) => sum + arr.length, 0);
+            document.getElementById('totalCards').textContent = totalCards;
+            document.getElementById('markedCards').textContent = markedCards.size;
+            
+            // 计算待复习数量（这里简化为标记的数量）
+            document.getElementById('reviewCards').textContent = markedCards.size;
+            document.getElementById('reviewCount').textContent = markedCards.size;
+        }
+
+        // 随机排序
+        function shuffleCards() {
+            if (cards.length === 0) return;
+            
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            currentIndex = 0;
+            isFlipped = false;
+            updateCard();
+            alert('已随机排序！');
+        }
+
+        // 重置进度
+        function resetProgress() {
+            if (confirm('确定要重置所有进度吗？这将清除所有标记。')) {
+                markedCards.clear();
+                currentIndex = 0;
+                isFlipped = false;
+                updateCard();
+                updateStats();
+                saveProgress();
+                alert('进度已重置！');
+            }
+        }
+
+        // 显示复习模式
+        function showReviewMode() {
+            const reviewMode = document.getElementById('reviewMode');
+            reviewMode.style.display = reviewMode.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // 开始复习
+        function startReview() {
+            if (markedCards.size === 0) {
+                alert('暂无标记的题目！');
+                return;
+            }
+
+            alert('复习功能开发中...');
+            // 这里可以实现只显示标记的题目
+        }
+
+        // 保存进度到 localStorage
+        function saveProgress() {
+            localStorage.setItem('ncreMarkedCards', JSON.stringify([...markedCards]));
+        }
+
+        // 从 localStorage 加载进度
+        function loadProgress() {
+            const saved = localStorage.getItem('ncreMarkedCards');
+            if (saved) {
+                markedCards = new Set(JSON.parse(saved));
+            }
+        }
+
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                flipCard();
+            }
+        });
+
+        // 初始化
+        loadProgress();
+        initCategories();
+    </script>
+</body>
+</html>
