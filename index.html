@@ -13,19 +13,19 @@
 
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #eef2f7;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
         }
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 650px;
+            border-radius: 8px;
+            box-shadow: 0 16px 45px rgba(31, 41, 55, 0.14);
+            max-width: 980px;
             width: 100%;
             padding: 30px;
         }
@@ -42,6 +42,337 @@
             color: #666;
             margin-bottom: 20px;
             font-size: 13px;
+        }
+
+        .hero-summary {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .summary-card,
+        .module-card,
+        .practice-card,
+        .quick-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 14px;
+        }
+
+        .summary-card {
+            background: #f8fafc;
+        }
+
+        .summary-card strong,
+        .module-card strong,
+        .practice-card strong,
+        .quick-card strong {
+            display: block;
+            color: #1f2937;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .summary-card span,
+        .module-card li,
+        .practice-card li,
+        .quick-card li {
+            color: #4b5563;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 18px 0 10px;
+            color: #111827;
+            font-size: 16px;
+        }
+
+        .section-title small {
+            color: #6b7280;
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .module-card ul,
+        .practice-card ul,
+        .quick-card ul {
+            list-style-position: inside;
+        }
+
+        .module-card.excel {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .module-card.word {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .module-card.ppt {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .module-card.base {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .resource-links a {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: #374151;
+            text-decoration: none;
+            font-size: 13px;
+            background: #fff;
+        }
+
+        .resource-links a:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .study-tools {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            color: #111827;
+            font-size: 14px;
+            padding: 10px 12px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.16);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .tool-btn,
+        .mastery-btn {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: #fff;
+            color: #374151;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 10px;
+        }
+
+        .tool-btn:hover,
+        .mastery-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .mastery-controls {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .mastery-btn.active[data-level="hard"] {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .mastery-btn.active[data-level="fuzzy"] {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+
+        .mastery-btn.active[data-level="known"] {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .mode-pill {
+            color: #4b5563;
+            font-size: 12px;
+            text-align: center;
+            margin: -6px 0 12px;
+        }
+
+        .daily-checklist {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+            margin-top: 12px;
+            padding: 12px;
+        }
+
+        .exam-panel {
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            background: #eff6ff;
+            margin-bottom: 16px;
+            padding: 14px;
+        }
+
+        .exam-header {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .exam-meta {
+            color: #1d4ed8;
+            font-size: 13px;
+        }
+
+        .exam-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exam-question {
+            background: #fff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            color: #111827;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            padding: 12px;
+        }
+
+        .exam-options {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .exam-option {
+            background: #fff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            color: #111827;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .exam-option:hover {
+            border-color: #667eea;
+        }
+
+        .exam-option.selected {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .exam-option.correct {
+            border-color: #22c55e;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .exam-option.wrong {
+            border-color: #ef4444;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .exam-result {
+            background: #fff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            color: #374151;
+            font-size: 13px;
+            line-height: 1.7;
+            padding: 12px;
+        }
+
+        .exam-review-list {
+            margin-top: 8px;
+        }
+
+        .exam-review-item {
+            border-top: 1px solid #e5e7eb;
+            padding: 8px 0;
+        }
+
+        .daily-checklist strong {
+            display: block;
+            color: #111827;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .check-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .check-item {
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: #374151;
+            display: flex;
+            font-size: 12px;
+            gap: 6px;
+            padding: 8px;
         }
 
         .total-stats {
@@ -134,7 +465,8 @@
 
         .flashcard {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
+            border-radius: 8px;
+            position: relative;
             padding: 35px 25px;
             min-height: 280px;
             display: flex;
@@ -186,7 +518,7 @@
             flex: 1;
             padding: 10px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -230,7 +562,7 @@
             justify-content: space-around;
             padding: 12px;
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-top: 10px;
         }
 
@@ -262,7 +594,7 @@
             border: 2px solid #667eea;
             background: white;
             color: #667eea;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 13px;
             transition: all 0.3s ease;
@@ -277,7 +609,7 @@
             background: #fff3cd;
             border: 2px solid #ffc107;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-top: 10px;
             text-align: center;
         }
@@ -296,7 +628,7 @@
             margin-top: 15px;
             padding: 10px;
             background: #e8f4ff;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 12px;
             color: #555;
             text-align: center;
@@ -305,12 +637,190 @@
         .tips strong {
             color: #667eea;
         }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 18px;
+            }
+
+            .hero-summary,
+            .module-grid,
+            .practice-grid,
+            .quick-grid,
+            .study-tools,
+            .quick-actions,
+            .check-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .controls,
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📚 二级 MS Office 背书</h1>
-        <div class="subtitle">点击卡片翻转查看答案 · 空格键翻转 · 左右键切换</div>
+        <div class="subtitle">学习总览 + 高频速记 + 操作训练清单 + 抽认卡刷题</div>
+
+        <div class="hero-summary">
+            <div class="summary-card">
+                <strong>考试结构</strong>
+                <span>选择题约20分，Word、Excel、PPT操作题约80分，重点在手熟和速度。</span>
+            </div>
+            <div class="summary-card">
+                <strong>备考节奏</strong>
+                <span>先过公共基础和Office基础，再集中突破Excel，最后套题计时。</span>
+            </div>
+            <div class="summary-card">
+                <strong>今日任务</strong>
+                <span>30分钟背选择题，60分钟练操作题，结束后记录1条错题原因。</span>
+            </div>
+            <div class="summary-card">
+                <strong>拿分策略</strong>
+                <span>Excel优先级最高，Word注意样式目录，PPT注意母版和放映设置。</span>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <strong>模块复习地图</strong>
+            <small>先看重点，再进入下面的抽认卡分类刷题</small>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-card base">
+                <strong>公共基础</strong>
+                <ul>
+                    <li>算法复杂度、栈队列、二叉树</li>
+                    <li>软件工程、数据库、E-R图</li>
+                    <li>目标：选择题稳定15分以上</li>
+                </ul>
+            </div>
+            <div class="module-card word">
+                <strong>Word</strong>
+                <ul>
+                    <li>样式、目录、分节、页眉页脚</li>
+                    <li>邮件合并、题注、引用和打印</li>
+                    <li>目标：按评分点逐项完成</li>
+                </ul>
+            </div>
+            <div class="module-card excel">
+                <strong>Excel</strong>
+                <ul>
+                    <li>函数、筛选、分类汇总、透视表</li>
+                    <li>图表、条件格式、数据验证</li>
+                    <li>目标：重点题型反复练到熟</li>
+                </ul>
+            </div>
+            <div class="module-card ppt">
+                <strong>PowerPoint</strong>
+                <ul>
+                    <li>母版、主题、版式、动画切换</li>
+                    <li>超链接、动作按钮、放映设置</li>
+                    <li>目标：统一格式和细节不漏</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <strong>操作题训练清单</strong>
+            <small>每做一套题都按这个清单检查，避免会做但漏步骤</small>
+        </div>
+
+        <div class="practice-grid">
+            <div class="practice-card">
+                <strong>Word必练</strong>
+                <ul>
+                    <li>设置标题样式并自动生成目录</li>
+                    <li>插入分节符，设置不同页眉页脚</li>
+                    <li>完成邮件合并并批量生成文档</li>
+                    <li>按要求设置页面、段落、图片环绕</li>
+                </ul>
+            </div>
+            <div class="practice-card">
+                <strong>Excel必练</strong>
+                <ul>
+                    <li>IF、SUMIF、COUNTIF、VLOOKUP</li>
+                    <li>排序筛选、分类汇总、数据验证</li>
+                    <li>数据透视表字段布局和值字段设置</li>
+                    <li>图表标题、图例、数据标签和格式</li>
+                </ul>
+            </div>
+            <div class="practice-card">
+                <strong>PPT必练</strong>
+                <ul>
+                    <li>母版统一字体、背景和Logo</li>
+                    <li>指定幻灯片版式和主题颜色</li>
+                    <li>设置动画顺序、开始方式和时长</li>
+                    <li>设置超链接、动作按钮和放映方式</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <strong>考前速记</strong>
+            <small>这些内容适合考前最后一周每天扫一遍</small>
+        </div>
+
+        <div class="quick-grid">
+            <div class="quick-card">
+                <strong>最容易丢分</strong>
+                <ul>
+                    <li>Excel公式引用区域少选一行或多选标题</li>
+                    <li>Word目录未更新、分节后没有取消链接</li>
+                    <li>PPT只设置单页，没有进入母版统一设置</li>
+                    <li>操作完成后没有保存到指定路径和格式</li>
+                </ul>
+            </div>
+            <div class="quick-card">
+                <strong>计时建议</strong>
+                <ul>
+                    <li>选择题：20分钟内完成，先易后难</li>
+                    <li>Word：25分钟左右，先结构后格式</li>
+                    <li>Excel：30分钟左右，先公式后图表</li>
+                    <li>PPT：20分钟左右，先母版后动画</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resource-links">
+            <a href="备考计划.md">查看备考计划</a>
+            <a href="知识库大全.md">打开知识库大全</a>
+            <a href="二级MS%20Office超全题库.md">打开超全题库</a>
+        </div>
+
+        <div class="section-title">
+            <strong>选择题测试</strong>
+            <small>模拟考试节奏，提交后自动判分并给错题解析</small>
+        </div>
+
+        <div class="exam-panel" id="choiceExamPanel">
+            <div class="exam-header">
+                <div>
+                    <strong>公共基础 + Office 高频选择题</strong>
+                    <div class="exam-meta" id="examMeta">建议先做10题快测，再做20题模拟。</div>
+                </div>
+                <div class="exam-actions">
+                    <button class="tool-btn" onclick="startChoiceExam(10)">10题快测</button>
+                    <button class="tool-btn" onclick="startChoiceExam(20)">20题模拟</button>
+                    <button class="tool-btn" onclick="finishChoiceExam()">交卷</button>
+                </div>
+            </div>
+            <div id="examBody" class="exam-result">
+                点击“10题快测”或“20题模拟”开始。测试会记录用时、正确率和错题解析，答错的题会自动计入薄弱统计。
+            </div>
+        </div>
 
         <div class="total-stats">
             <div class="total-stat">
@@ -328,7 +838,25 @@
         </div>
         <div class="progress-text" id="progressText">0 / 0</div>
 
+        <div class="section-title">
+            <strong>抽认卡刷题区</strong>
+            <small>点击卡片翻转查看答案 · 空格键翻转 · 左右键切换</small>
+        </div>
+
+        <div class="study-tools">
+            <input class="search-input" id="searchInput" type="search" placeholder="搜索函数、目录、二叉树、母版..." oninput="applySearch()">
+            <div class="quick-actions">
+                <button class="tool-btn" onclick="showAllCards()">全部题库</button>
+                <button class="tool-btn" onclick="startToday()">今日10题</button>
+                <button class="tool-btn" onclick="startWeakReview()">薄弱复习</button>
+                <button class="tool-btn" onclick="selectCategory('🧮 Excel操作训练')">Excel专项</button>
+                <button class="tool-btn" onclick="startChoiceExam(20)">选择题测试</button>
+            </div>
+        </div>
+
         <div class="category-selector" id="categorySelector"></div>
+
+        <div class="mode-pill" id="modeText">当前模式：分类背诵</div>
 
         <div class="flashcard" id="flashcard" onclick="flipCard()">
             <div class="card-type" id="cardType">知识点</div>
@@ -342,6 +870,12 @@
             <button class="btn btn-next" onclick="nextCard()">下一题 ▶</button>
         </div>
 
+        <div class="mastery-controls">
+            <button class="mastery-btn" data-level="hard" onclick="setMastery('hard')">不会</button>
+            <button class="mastery-btn" data-level="fuzzy" onclick="setMastery('fuzzy')">模糊</button>
+            <button class="mastery-btn" data-level="known" onclick="setMastery('known')">已会</button>
+        </div>
+
         <div class="stats">
             <div class="stat-item">
                 <div class="stat-number" id="currentCategoryCount">0</div>
@@ -349,11 +883,11 @@
             </div>
             <div class="stat-item">
                 <div class="stat-number" id="reviewCards">0</div>
-                <div class="stat-label">待复习</div>
+                <div class="stat-label">薄弱卡</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number" id="markedCards">0</div>
-                <div class="stat-label">已标记</div>
+                <div class="stat-label">已会</div>
             </div>
         </div>
 
@@ -369,8 +903,18 @@
             <button class="btn btn-review" onclick="startReview()">开始复习</button>
         </div>
 
+        <div class="daily-checklist">
+            <strong>今日打卡</strong>
+            <div class="check-grid">
+                <label class="check-item"><input type="checkbox" data-task="choice"> 选择题30分钟</label>
+                <label class="check-item"><input type="checkbox" data-task="excel"> Excel操作1套</label>
+                <label class="check-item"><input type="checkbox" data-task="office"> Word/PPT操作1套</label>
+                <label class="check-item"><input type="checkbox" data-task="review"> 错题复盘10分钟</label>
+            </div>
+        </div>
+
         <div class="tips">
-            💡 <strong>提示：</strong>标记的题目会保存在本地，下次打开还在！
+            💡 <strong>提示：</strong>标记、掌握度和今日打卡都会保存在本地，下次打开还在！
         </div>
     </div>
 
@@ -551,22 +1095,122 @@
                 { question: "PPT演示文稿的扩展名？", answer: ".pptx" },
                 { question: "PPT放映文件的扩展名？", answer: ".ppsx" },
                 { question: "如何打印不连续的页面？", answer: "用逗号分隔不连续页，用连字符表示连续页<br>如：1,3,5-7" }
+            ],
+            "🧩 Word操作流程": [
+                { question: "Word操作题拿到文件后先做什么？", answer: "先通读题目要求，圈出所有评分点；再保存副本，确认文件名和保存路径符合要求。" },
+                { question: "自动目录题的标准流程？", answer: "① 给各级标题应用标题1/标题2样式<br>② 修改样式格式而不是手动改每个标题<br>③ 引用 → 目录 → 自动目录<br>④ 完成后更新整个目录" },
+                { question: "分节页码题的关键步骤？", answer: "① 在上一部分末尾插入分节符<br>② 进入页眉页脚，取消链接到前一节<br>③ 设置页码格式和起始页码<br>④ 检查每节页眉页脚是否独立" },
+                { question: "邮件合并题的完整步骤？", answer: "① 打开主文档<br>② 选择收件人并连接Excel数据源<br>③ 插入合并域<br>④ 预览结果<br>⑤ 完成并合并到新文档或打印" },
+                { question: "图片和图文混排题常查什么？", answer: "图片大小、位置、文字环绕方式、对齐方式、边框效果、题注编号、图片压缩和替换。" },
+                { question: "表格题常见评分点？", answer: "插入或调整行列、合并拆分单元格、表格样式、边框底纹、对齐方式、标题行重复、公式计算。" },
+                { question: "Word最后检查清单？", answer: "目录是否更新、页码是否正确、标题样式是否统一、图片是否跑版、文件是否按要求保存。" }
+            ],
+            "🧮 Excel操作训练": [
+                { question: "Excel操作题的推荐顺序？", answer: "先整理数据区域和标题，再做公式函数，然后做排序筛选/分类汇总/透视表，最后做图表和格式。" },
+                { question: "写公式前要检查什么？", answer: "确认数据区域、标题行、相对/绝对引用、是否要向下填充、是否包含空值或文本数字。" },
+                { question: "VLOOKUP题最容易错在哪里？", answer: "查找值必须在查找区域第一列；返回列序号从区域第一列开始数；精确匹配用FALSE或0。" },
+                { question: "SUMIF/COUNTIF题的核心区别？", answer: "SUMIF按条件求和；COUNTIF按条件计数。SUMIF有条件区域和求和区域，COUNTIF只有区域和条件。" },
+                { question: "分类汇总题的必要前置步骤？", answer: "必须先按分类字段排序，再执行数据 → 分类汇总；否则同一类别可能被拆成多组。" },
+                { question: "数据透视表题怎么减少失误？", answer: "选中完整数据源含标题；字段按题目要求放入行、列、值、筛选区域；检查值字段汇总方式和数字格式。" },
+                { question: "图表题最后要检查哪些元素？", answer: "图表类型、标题、坐标轴标题、图例位置、数据标签、系列格式、图表位置和大小。" },
+                { question: "Excel最后检查清单？", answer: "公式是否填充完整、引用是否锁定、筛选条件是否正确、透视表是否刷新、图表是否使用正确数据源。" }
+            ],
+            "🎞️ PPT操作训练": [
+                { question: "PPT操作题的推荐顺序？", answer: "先看全局要求，再改母版和主题；随后处理单页内容，最后设置动画、切换、超链接和放映。" },
+                { question: "母版题的核心判断？", answer: "题目要求所有幻灯片统一出现的元素，应优先在幻灯片母版中设置，不要逐页手动复制。" },
+                { question: "动画题要检查哪三项？", answer: "动画对象是否正确、动画类型是否正确、开始方式/持续时间/延迟/顺序是否符合要求。" },
+                { question: "切换和动画有什么区别？", answer: "切换是幻灯片之间的过渡效果；动画是幻灯片内对象的出现、强调、退出或路径效果。" },
+                { question: "超链接和动作按钮常链接到哪里？", answer: "可以链接到指定幻灯片、文件、网页、电子邮件，也可以设置返回、下一张、结束放映等动作。" },
+                { question: "PPT最后检查清单？", answer: "母版是否生效、版式是否正确、动画顺序是否正确、隐藏幻灯片是否按要求、放映方式是否设置。" }
+            ],
+            "🧪 模拟选择题": [
+                { question: "下列关于算法的叙述正确的是？<br>A. 算法就是程序<br>B. 算法必须有穷<br>C. 算法只需要输入不需要输出<br>D. 算法复杂度与数据量无关", answer: "答案：B<br>解析：算法具有有穷性，并且至少有一个输出。程序是算法的实现，不等于算法本身。" },
+                { question: "下列结构中属于线性结构的是？<br>A. 二叉树<br>B. 图<br>C. 队列<br>D. 树", answer: "答案：C<br>解析：队列是受限的线性表，属于线性结构。" },
+                { question: "在E-R图中，表示联系通常使用？<br>A. 矩形<br>B. 椭圆<br>C. 菱形<br>D. 直线", answer: "答案：C<br>解析：实体用矩形，属性用椭圆，联系用菱形。" },
+                { question: "Word中自动生成目录的前提是？<br>A. 手动输入目录文字<br>B. 设置标题样式<br>C. 设置页边距<br>D. 插入分页符", answer: "答案：B<br>解析：自动目录依赖标题1、标题2等标题样式。" },
+                { question: "Excel中固定查找区域A2:D20，应写成？<br>A. A2:D20<br>B. $A$2:$D$20<br>C. A$2:D20<br>D. $A2:D$20", answer: "答案：B<br>解析：行列都固定时，列标和行号前都要加$。" },
+                { question: "创建数据透视表时，字段通常拖入哪四个区域？<br>A. 标题、正文、页脚、批注<br>B. 行、列、值、筛选器<br>C. 字体、段落、样式、主题<br>D. 动画、切换、放映、审阅", answer: "答案：B<br>解析：数据透视表的核心区域是行、列、值、筛选器。" },
+                { question: "PPT中从当前幻灯片开始放映的快捷键是？<br>A. F5<br>B. Shift + F5<br>C. Ctrl + M<br>D. Ctrl + K", answer: "答案：B<br>解析：F5从头放映，Shift+F5从当前幻灯片放映。" },
+                { question: "软件测试的主要目的是？<br>A. 证明程序完全正确<br>B. 发现错误<br>C. 编写需求说明<br>D. 生成数据库", answer: "答案：B<br>解析：软件测试的目的是尽可能发现错误。" }
             ]
         };
+        const choiceExamBank = [
+            { id: 'choice-001', category: '公共基础', question: '算法的有穷性是指？', options: ['算法必须包含循环', '算法必须在有限步骤内结束', '算法必须有多个输入', '算法只能用程序实现'], answer: 'B', explanation: '有穷性表示算法必须在有限时间或有限步骤内完成。' },
+            { id: 'choice-002', category: '公共基础', question: '下列属于线性结构的是？', options: ['二叉树', '图', '队列', '树'], answer: 'C', explanation: '队列是受限的线性表，属于线性结构。' },
+            { id: 'choice-003', category: '公共基础', question: '栈的操作特点是？', options: ['先进先出', '后进先出', '随机进出', '只进不出'], answer: 'B', explanation: '栈是后进先出，也可称先进后出。' },
+            { id: 'choice-004', category: '公共基础', question: '深度为5的满二叉树共有多少个结点？', options: ['16', '31', '32', '63'], answer: 'B', explanation: '深度为m的满二叉树结点数为2^m - 1，2^5 - 1 = 31。' },
+            { id: 'choice-005', category: '公共基础', question: '二分查找的前提条件是？', options: ['线性表必须有序且顺序存储', '线性表必须无序', '必须使用链式存储', '必须使用树形结构'], answer: 'A', explanation: '二分查找要求有序顺序表。' },
+            { id: 'choice-006', category: '公共基础', question: '冒泡排序在最坏情况下的时间复杂度是？', options: ['O(1)', 'O(log2n)', 'O(n)', 'O(n^2)'], answer: 'D', explanation: '冒泡排序最坏情况下需要进行大量相邻比较和交换，时间复杂度为O(n^2)。' },
+            { id: 'choice-007', category: '公共基础', question: '结构化程序设计的三种基本结构不包括？', options: ['顺序结构', '选择结构', '循环结构', '网状结构'], answer: 'D', explanation: '结构化程序设计包含顺序、选择、循环三种基本结构。' },
+            { id: 'choice-008', category: '公共基础', question: '面向对象方法中实现信息隐蔽主要依靠？', options: ['继承', '封装', '多态', '分类'], answer: 'B', explanation: '封装隐藏对象内部细节，只暴露必要接口。' },
+            { id: 'choice-009', category: '公共基础', question: '软件测试的主要目的是？', options: ['证明程序无错', '发现错误', '编写代码', '生成文档'], answer: 'B', explanation: '软件测试的主要目的是发现错误，而不是证明程序完全正确。' },
+            { id: 'choice-010', category: '公共基础', question: '模块独立性追求的是？', options: ['高耦合、高内聚', '高耦合、低内聚', '低耦合、高内聚', '低耦合、低内聚'], answer: 'C', explanation: '模块设计目标是低耦合、高内聚。' },
+            { id: 'choice-011', category: '数据库', question: '数据库系统的核心软件是？', options: ['数据库', '数据库管理系统', '操作系统', '编译系统'], answer: 'B', explanation: '数据库管理系统DBMS是数据库系统的核心软件。' },
+            { id: 'choice-012', category: '数据库', question: 'E-R图中表示实体的图形是？', options: ['矩形', '椭圆', '菱形', '圆角矩形'], answer: 'A', explanation: 'E-R图中实体用矩形，属性用椭圆，联系用菱形。' },
+            { id: 'choice-013', category: '数据库', question: '关系数据库中一行通常称为？', options: ['属性', '字段', '元组', '域'], answer: 'C', explanation: '关系表中的一行称为元组或记录。' },
+            { id: 'choice-014', category: 'Word', question: 'Word中自动生成目录的前提是？', options: ['设置标题样式', '设置页边距', '插入文本框', '手动输入目录'], answer: 'A', explanation: '自动目录依赖标题1、标题2等标题样式。' },
+            { id: 'choice-015', category: 'Word', question: 'Word中分节符的主要作用是？', options: ['删除段落', '把文档划分为可独立设置格式的节', '改变字体颜色', '插入图片'], answer: 'B', explanation: '分节后，不同节可以设置不同页眉页脚、页码、页面方向等。' },
+            { id: 'choice-016', category: 'Word', question: 'Word邮件合并中的数据源通常可以是？', options: ['Excel表格', '屏幕截图', '音频文件', '动画文件'], answer: 'A', explanation: '邮件合并常用Excel表格作为收件人数据源。' },
+            { id: 'choice-017', category: 'Excel', question: 'Excel绝对引用A1单元格应写成？', options: ['A1', '$A$1', 'A$1', '$A1'], answer: 'B', explanation: '列和行都固定时，列标和行号前都加$。' },
+            { id: 'choice-018', category: 'Excel', question: 'VLOOKUP函数第四个参数FALSE表示？', options: ['模糊匹配', '精确匹配', '降序排序', '返回空值'], answer: 'B', explanation: 'FALSE或0表示精确匹配。' },
+            { id: 'choice-019', category: 'Excel', question: '使用分类汇总前，必须先进行什么操作？', options: ['插入图表', '按分类字段排序', '合并单元格', '设置页眉'], answer: 'B', explanation: '分类汇总前必须按分类字段排序，否则同类数据可能无法正确汇总。' },
+            { id: 'choice-020', category: 'Excel', question: '数据透视表的四个区域通常是？', options: ['行、列、值、筛选器', '标题、正文、页脚、批注', '字体、段落、样式、主题', '动画、切换、放映、审阅'], answer: 'A', explanation: '数据透视表字段区域通常包括行、列、值、筛选器。' },
+            { id: 'choice-021', category: 'Excel', question: 'COUNTIF函数主要用于？', options: ['按条件计数', '按条件求和', '查找数据', '截取文本'], answer: 'A', explanation: 'COUNTIF用于统计满足条件的单元格个数。' },
+            { id: 'choice-022', category: 'Excel', question: '显示各部分占总体比例，最适合使用哪类图表？', options: ['折线图', '饼图', '散点图', '雷达图'], answer: 'B', explanation: '饼图适合表示部分与整体的比例关系。' },
+            { id: 'choice-023', category: 'PPT', question: 'PowerPoint中统一设置幻灯片格式应使用？', options: ['幻灯片母版', '备注页', '阅读视图', '打印预览'], answer: 'A', explanation: '幻灯片母版用于统一控制多张幻灯片的版式和格式。' },
+            { id: 'choice-024', category: 'PPT', question: '从当前幻灯片开始放映的快捷键是？', options: ['F5', 'Shift + F5', 'Ctrl + M', 'Ctrl + K'], answer: 'B', explanation: 'F5从头放映，Shift+F5从当前幻灯片开始放映。' },
+            { id: 'choice-025', category: 'PPT', question: 'PPT动画的四种类型不包括？', options: ['进入', '强调', '退出', '打印'], answer: 'D', explanation: 'PPT动画类型包括进入、强调、退出、动作路径。' },
+            { id: 'choice-026', category: 'Office', question: '保存文档的通用快捷键是？', options: ['Ctrl + S', 'Ctrl + P', 'Ctrl + F', 'Ctrl + H'], answer: 'A', explanation: 'Ctrl+S是保存，Ctrl+P是打印。' },
+            { id: 'choice-027', category: 'Office', question: '查找的通用快捷键是？', options: ['Ctrl + F', 'Ctrl + H', 'Ctrl + Z', 'Ctrl + Y'], answer: 'A', explanation: 'Ctrl+F是查找，Ctrl+H是替换。' },
+            { id: 'choice-028', category: 'Office', question: 'Excel启用宏的工作簿扩展名是？', options: ['.xlsx', '.xlsm', '.docm', '.pptx'], answer: 'B', explanation: '.xlsm是启用宏的Excel工作簿。' },
+            { id: 'choice-029', category: 'Office', question: '打印第1页、第3页和第5到7页，应输入？', options: ['1;3;5-7', '1,3,5-7', '1 3 5 7', '1/3/5-7'], answer: 'B', explanation: '不连续页用逗号分隔，连续页用连字符表示。' },
+            { id: 'choice-030', category: 'PPT', question: '插入超链接的快捷键是？', options: ['Ctrl + K', 'Ctrl + L', 'Ctrl + M', 'Ctrl + D'], answer: 'A', explanation: 'Office中插入超链接常用Ctrl+K。' }
+        ];
 
         let currentCategory = '';
         let currentIndex = 0;
         let cards = [];
         let markedCards = new Set();
+        let mastery = {};
+        let dailyDone = {};
         let isFlipped = false;
         let isReviewMode = false;
+        let currentMode = '分类背诵';
+        let examQuestions = [];
+        let examIndex = 0;
+        let examAnswers = {};
+        let examStartedAt = null;
+        let examTimer = null;
+        let examLimitSeconds = 0;
 
         // 初始化
         function init() {
-            document.getElementById('totalQuestions').textContent = Object.values(questionBank).reduce((sum, arr) => sum + arr.length, 0);
-            document.getElementById('totalCategories').textContent = Object.keys(questionBank).length;
+            document.getElementById('totalQuestions').textContent = flattenCards().length;
+            document.getElementById('totalCategories').textContent = Object.keys(questionBank).length + 1;
             loadProgress();
+            initDailyChecklist();
             initCategories();
+        }
+
+        function buildCards(category) {
+            return questionBank[category].map((card, index) => ({
+                ...card,
+                category,
+                originalIndex: index,
+                id: `${category}-${index}`
+            }));
+        }
+
+        function flattenCards() {
+            const flashCards = Object.keys(questionBank).flatMap(category => buildCards(category));
+            const examCards = choiceExamBank.map(item => ({
+                question: `${item.question}<br>A. ${item.options[0]}<br>B. ${item.options[1]}<br>C. ${item.options[2]}<br>D. ${item.options[3]}`,
+                answer: `答案：${item.answer}<br>${item.explanation}`,
+                category: `选择题测试-${item.category}`,
+                originalIndex: item.id,
+                id: item.id
+            }));
+            return [...flashCards, ...examCards];
         }
 
         // 初始化分类选择器
@@ -594,16 +1238,29 @@
                 isReviewMode = false;
                 document.getElementById('reviewMode').style.display = 'none';
             }
-            
+
             currentCategory = category;
-            cards = [...questionBank[category]];
+            cards = buildCards(category);
             currentIndex = 0;
             isFlipped = false;
+            currentMode = `分类背诵：${category}`;
+            document.getElementById('searchInput').value = '';
 
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.includes(category));
             });
 
+            updateCard();
+            updateStats();
+        }
+
+        function setCards(nextCards, mode) {
+            cards = nextCards;
+            currentIndex = 0;
+            isFlipped = false;
+            isReviewMode = mode.includes('复习');
+            currentMode = mode;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             updateCard();
             updateStats();
         }
@@ -618,12 +1275,13 @@
             if (cards.length === 0) {
                 content.innerHTML = '该分类暂无题目';
                 cardNumber.textContent = '0 / 0';
+                cardType.textContent = '空';
                 return;
             }
 
             const currentCard = cards[currentIndex];
             content.innerHTML = isFlipped ? currentCard.answer : currentCard.question;
-            cardType.textContent = isFlipped ? '答案' : '题目';
+            cardType.textContent = `${isFlipped ? '答案' : '题目'} · ${currentCard.category || currentCategory}`;
             
             if (isFlipped) {
                 card.classList.add('flipped');
@@ -634,6 +1292,7 @@
             cardNumber.textContent = `${currentIndex + 1} / ${cards.length}`;
             updateProgress();
             updateMarkButton();
+            updateMasteryButtons();
         }
 
         // 翻转卡片
@@ -662,14 +1321,14 @@
         // 标记/取消标记
         function toggleMark() {
             if (cards.length === 0) return;
-            
-            const cardId = `${currentCategory}-${currentIndex}`;
+
+            const cardId = getCurrentCardId();
             if (markedCards.has(cardId)) {
                 markedCards.delete(cardId);
             } else {
                 markedCards.add(cardId);
             }
-            
+
             updateMarkButton();
             updateStats();
             saveProgress();
@@ -678,8 +1337,8 @@
         // 更新标记按钮
         function updateMarkButton() {
             const btn = document.getElementById('markBtn');
-            const cardId = `${currentCategory}-${currentIndex}`;
-            
+            const cardId = getCurrentCardId();
+
             if (markedCards.has(cardId)) {
                 btn.textContent = '⭐ 已标记';
                 btn.classList.add('marked');
@@ -687,6 +1346,32 @@
                 btn.textContent = '⭐ 标记';
                 btn.classList.remove('marked');
             }
+        }
+
+        function getCurrentCardId() {
+            if (cards.length === 0) return '';
+            return cards[currentIndex].id || `${cards[currentIndex].category || currentCategory}-${cards[currentIndex].originalIndex ?? currentIndex}`;
+        }
+
+        function setMastery(level) {
+            if (cards.length === 0) return;
+            const cardId = getCurrentCardId();
+            if (mastery[cardId] === level) {
+                delete mastery[cardId];
+            } else {
+                mastery[cardId] = level;
+            }
+            saveProgress();
+            updateMasteryButtons();
+            updateStats();
+        }
+
+        function updateMasteryButtons() {
+            const cardId = getCurrentCardId();
+            const level = mastery[cardId];
+            document.querySelectorAll('.mastery-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.level === level);
+            });
         }
 
         // 更新进度条
@@ -708,9 +1393,10 @@
         // 更新统计
         function updateStats() {
             document.getElementById('currentCategoryCount').textContent = cards.length;
-            document.getElementById('markedCards').textContent = markedCards.size;
-            document.getElementById('reviewCards').textContent = markedCards.size;
+            document.getElementById('markedCards').textContent = Object.values(mastery).filter(level => level === 'known').length;
+            document.getElementById('reviewCards').textContent = Object.values(mastery).filter(level => level === 'hard' || level === 'fuzzy').length;
             document.getElementById('reviewCount').textContent = markedCards.size;
+            document.getElementById('modeText').textContent = `当前模式：${currentMode}`;
         }
 
         // 随机排序
@@ -727,12 +1413,204 @@
             updateCard();
         }
 
+        function showAllCards() {
+            document.getElementById('searchInput').value = '';
+            setCards(flattenCards(), '全部题库');
+        }
+
+        function applySearch() {
+            const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!keyword) {
+                if (currentCategory && questionBank[currentCategory]) {
+                    selectCategory(currentCategory);
+                }
+                return;
+            }
+
+            const results = flattenCards().filter(card => {
+                const text = `${card.category} ${card.question} ${card.answer}`.toLowerCase();
+                return text.includes(keyword);
+            });
+            setCards(results, `搜索：${keyword}`);
+        }
+
+        function startToday() {
+            const pool = flattenCards();
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+            document.getElementById('searchInput').value = '';
+            setCards(pool.slice(0, 10), '今日10题');
+        }
+
+        function startWeakReview() {
+            const weakIds = new Set(Object.entries(mastery)
+                .filter(([, level]) => level === 'hard' || level === 'fuzzy')
+                .map(([id]) => id));
+            const weakCards = flattenCards().filter(card => weakIds.has(card.id));
+            if (weakCards.length === 0) {
+                alert('暂无薄弱卡。先用“不会/模糊”标几张卡。');
+                return;
+            }
+            document.getElementById('searchInput').value = '';
+            setCards(weakCards, '薄弱复习');
+        }
+
+        function startChoiceExam(count) {
+            const pool = [...choiceExamBank];
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+            examQuestions = pool.slice(0, count);
+            examIndex = 0;
+            examAnswers = {};
+            examStartedAt = Date.now();
+            examLimitSeconds = count * 60;
+            if (examTimer) clearInterval(examTimer);
+            examTimer = setInterval(() => {
+                if (getExamRemainingSeconds() <= 0) {
+                    finishChoiceExam(true);
+                    return;
+                }
+                updateExamMeta();
+            }, 1000);
+            renderChoiceQuestion();
+        }
+
+        function getExamRemainingSeconds() {
+            if (!examStartedAt) return examLimitSeconds;
+            const used = Math.floor((Date.now() - examStartedAt) / 1000);
+            return Math.max(0, examLimitSeconds - used);
+        }
+
+        function formatSeconds(seconds) {
+            const minutes = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const rest = String(seconds % 60).padStart(2, '0');
+            return `${minutes}:${rest}`;
+        }
+
+        function updateExamMeta() {
+            if (examQuestions.length === 0) return;
+            const answered = Object.keys(examAnswers).length;
+            document.getElementById('examMeta').textContent =
+                `第 ${examIndex + 1}/${examQuestions.length} 题 · 已答 ${answered}/${examQuestions.length} · 剩余 ${formatSeconds(getExamRemainingSeconds())}`;
+        }
+
+        function renderChoiceQuestion() {
+            if (examQuestions.length === 0) return;
+            const item = examQuestions[examIndex];
+            const selected = examAnswers[item.id];
+            const letters = ['A', 'B', 'C', 'D'];
+            const optionsHtml = item.options.map((option, index) => {
+                const letter = letters[index];
+                const stateClass = letter === selected ? ' selected' : '';
+                return `<button class="exam-option${stateClass}" onclick="chooseExamOption('${letter}')">${letter}. ${option}</button>`;
+            }).join('');
+
+            document.getElementById('examBody').innerHTML = `
+                <div class="exam-question"><strong>${examIndex + 1}. ${item.question}</strong><br><span class="exam-meta">${item.category}</span></div>
+                <div class="exam-options">${optionsHtml}</div>
+                <div class="exam-actions">
+                    <button class="tool-btn" onclick="prevExamQuestion()">上一题</button>
+                    <button class="tool-btn" onclick="nextExamQuestion()">下一题</button>
+                    <button class="tool-btn" onclick="finishChoiceExam()">交卷看结果</button>
+                </div>
+            `;
+            updateExamMeta();
+        }
+
+        function chooseExamOption(letter) {
+            if (examQuestions.length === 0) return;
+            const item = examQuestions[examIndex];
+            examAnswers[item.id] = letter;
+            renderChoiceQuestion();
+        }
+
+        function prevExamQuestion() {
+            if (examQuestions.length === 0) return;
+            examIndex = (examIndex - 1 + examQuestions.length) % examQuestions.length;
+            renderChoiceQuestion();
+        }
+
+        function nextExamQuestion() {
+            if (examQuestions.length === 0) return;
+            examIndex = (examIndex + 1) % examQuestions.length;
+            renderChoiceQuestion();
+        }
+
+        function finishChoiceExam(autoSubmit = false) {
+            if (examQuestions.length === 0) {
+                alert('请先开始选择题测试。');
+                return;
+            }
+
+            if (!autoSubmit && Object.keys(examAnswers).length < examQuestions.length) {
+                const ok = confirm('还有未作答题目，确定交卷吗？');
+                if (!ok) return;
+            }
+
+            if (examTimer) clearInterval(examTimer);
+            const usedSeconds = Math.floor((Date.now() - examStartedAt) / 1000);
+            const today = getDailyKey();
+            if (!dailyDone[today]) dailyDone[today] = {};
+            dailyDone[today].choice = true;
+            initDailyChecklist();
+            let correct = 0;
+            let reviewHtml = '';
+
+            examQuestions.forEach((item, index) => {
+                const selected = examAnswers[item.id] || '未答';
+                const isCorrect = selected === item.answer;
+                if (isCorrect) {
+                    correct++;
+                    mastery[item.id] = 'known';
+                } else {
+                    mastery[item.id] = 'hard';
+                    reviewHtml += `
+                        <div class="exam-review-item">
+                            <strong>${index + 1}. ${item.question}</strong><br>
+                            你的答案：${selected}；正确答案：${item.answer}<br>
+                            ${item.explanation}
+                        </div>
+                    `;
+                }
+            });
+
+            const score = Math.round((correct / examQuestions.length) * 100);
+            const passedText = score >= 80 ? '能力判断：选择题基础较稳，可以继续提速。' : '能力判断：选择题还需要回炉，建议先刷薄弱复习。';
+            document.getElementById('examMeta').textContent = `已交卷 · 用时 ${formatSeconds(usedSeconds)}`;
+            document.getElementById('examBody').innerHTML = `
+                <div class="exam-result">
+                    <strong>本次得分：${score}分</strong><br>
+                    正确：${correct}/${examQuestions.length}；错误/未答：${examQuestions.length - correct}<br>
+                    ${passedText}
+                    <div class="exam-actions" style="margin-top: 10px;">
+                        <button class="tool-btn" onclick="startChoiceExam(10)">再测10题</button>
+                        <button class="tool-btn" onclick="startChoiceExam(20)">再做20题</button>
+                        <button class="tool-btn" onclick="startWeakReview()">复习薄弱卡</button>
+                    </div>
+                    <div class="exam-review-list">${reviewHtml || '本次没有错题。'}</div>
+                </div>
+            `;
+            saveProgress();
+            updateStats();
+        }
+
         // 重置进度
         function resetProgress() {
-            if (confirm('确定要重置所有标记吗？')) {
+            if (confirm('确定要重置所有标记、掌握度和今日打卡吗？')) {
                 markedCards.clear();
+                mastery = {};
+                dailyDone = {};
+                examQuestions = [];
+                examAnswers = {};
+                if (examTimer) clearInterval(examTimer);
                 currentIndex = 0;
                 isFlipped = false;
+                initDailyChecklist();
                 updateCard();
                 updateStats();
                 saveProgress();
@@ -753,28 +1631,17 @@
             }
 
             // 收集所有标记的题目
-            let reviewQuestions = [];
-            Object.keys(questionBank).forEach(category => {
-                questionBank[category].forEach((q, index) => {
-                    if (markedCards.has(`${category}-${index}`)) {
-                        reviewQuestions.push({ ...q, category, index });
-                    }
-                });
-            });
+            let reviewQuestions = flattenCards().filter(card => markedCards.has(card.id));
 
             // 切换到特殊模式显示标记的题目
-            isReviewMode = true;
-            cards = reviewQuestions;
-            currentIndex = 0;
-            isFlipped = false;
             document.getElementById('reviewMode').style.display = 'none';
-            updateCard();
-            updateStats();
+            setCards(reviewQuestions, '标记复习');
         }
-
         // 保存进度到 localStorage
         function saveProgress() {
             localStorage.setItem('ncreMarkedCards', JSON.stringify([...markedCards]));
+            localStorage.setItem('ncreMastery', JSON.stringify(mastery));
+            localStorage.setItem('ncreDailyDone', JSON.stringify(dailyDone));
         }
 
         // 从 localStorage 加载进度
@@ -783,6 +1650,34 @@
             if (saved) {
                 markedCards = new Set(JSON.parse(saved));
             }
+            const savedMastery = localStorage.getItem('ncreMastery');
+            if (savedMastery) {
+                mastery = JSON.parse(savedMastery);
+            }
+            const savedDaily = localStorage.getItem('ncreDailyDone');
+            if (savedDaily) {
+                dailyDone = JSON.parse(savedDaily);
+            }
+        }
+
+        function getDailyKey() {
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${now.getFullYear()}-${month}-${day}`;
+        }
+
+        function initDailyChecklist() {
+            const today = getDailyKey();
+            if (!dailyDone[today]) dailyDone[today] = {};
+
+            document.querySelectorAll('.daily-checklist input[type="checkbox"]').forEach(input => {
+                input.checked = !!dailyDone[today][input.dataset.task];
+                input.onchange = () => {
+                    dailyDone[today][input.dataset.task] = input.checked;
+                    saveProgress();
+                };
+            });
         }
 
         // 键盘快捷键
