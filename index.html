@@ -25,7 +25,7 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             padding: 30px;
         }
@@ -33,22 +33,47 @@
         h1 {
             text-align: center;
             color: #667eea;
-            margin-bottom: 10px;
-            font-size: 24px;
+            margin-bottom: 5px;
+            font-size: 22px;
         }
 
         .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .total-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .total-stat {
+            text-align: center;
+        }
+
+        .total-stat .number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .total-stat .label {
+            font-size: 11px;
+            color: #666;
         }
 
         .progress-bar {
             background: #f0f0f0;
             height: 8px;
             border-radius: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             overflow: hidden;
         }
 
@@ -62,26 +87,26 @@
         .progress-text {
             text-align: center;
             color: #666;
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
         }
 
         .category-selector {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 15px;
             justify-content: center;
         }
 
         .category-btn {
-            padding: 8px 16px;
+            padding: 6px 14px;
             border: 2px solid #667eea;
             background: white;
             color: #667eea;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.3s ease;
         }
 
@@ -95,21 +120,33 @@
             color: white;
         }
 
+        .category-btn .count {
+            background: rgba(102,126,234,0.2);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+
+        .category-btn.active .count {
+            background: rgba(255,255,255,0.3);
+        }
+
         .flashcard {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 15px;
-            padding: 40px 30px;
-            min-height: 300px;
+            padding: 35px 25px;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: white;
             text-align: center;
-            font-size: 18px;
-            line-height: 1.8;
+            font-size: 17px;
+            line-height: 1.7;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
@@ -118,29 +155,39 @@
             background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         }
 
+        .card-type {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
         .card-number {
             position: absolute;
             top: 15px;
             right: 20px;
-            background: rgba(255,255,255,0.3);
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
         }
 
         .controls {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
         .btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
@@ -167,6 +214,7 @@
         .btn-mark {
             background: #ff6b6b;
             color: white;
+            flex: 0.8;
         }
 
         .btn-mark:hover {
@@ -180,10 +228,10 @@
         .stats {
             display: flex;
             justify-content: space-around;
-            padding: 15px;
+            padding: 12px;
             background: #f8f9fa;
             border-radius: 10px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .stat-item {
@@ -191,32 +239,32 @@
         }
 
         .stat-number {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: #667eea;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
         .action-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .btn-action {
             flex: 1;
-            padding: 10px;
+            padding: 8px;
             border: 2px solid #667eea;
             background: white;
             color: #667eea;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.3s ease;
         }
 
@@ -228,27 +276,52 @@
         .review-mode {
             background: #fff3cd;
             border: 2px solid #ffc107;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
-            margin-top: 15px;
+            margin-top: 10px;
             text-align: center;
         }
 
         .btn-review {
             background: #ffc107;
             color: #333;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .btn-review:hover {
             background: #ffb300;
+        }
+
+        .tips {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e8f4ff;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+        }
+
+        .tips strong {
+            color: #667eea;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📚 二级 MS Office 背书</h1>
-        <div class="subtitle">点击卡片翻转查看答案</div>
+        <div class="subtitle">点击卡片翻转查看答案 · 空格键翻转 · 左右键切换</div>
+
+        <div class="total-stats">
+            <div class="total-stat">
+                <div class="number" id="totalQuestions">0</div>
+                <div class="label">总题数</div>
+            </div>
+            <div class="total-stat">
+                <div class="number" id="totalCategories">0</div>
+                <div class="label">分类数</div>
+            </div>
+        </div>
 
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
@@ -258,20 +331,21 @@
         <div class="category-selector" id="categorySelector"></div>
 
         <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="card-type" id="cardType">知识点</div>
             <div class="card-number" id="cardNumber">1 / 0</div>
             <div id="cardContent">请选择分类开始背书</div>
         </div>
 
         <div class="controls">
-            <button class="btn btn-prev" onclick="prevCard()">⬅ 上一题</button>
+            <button class="btn btn-prev" onclick="prevCard()">◀ 上一题</button>
             <button class="btn btn-mark" id="markBtn" onclick="toggleMark()">⭐ 标记</button>
-            <button class="btn btn-next" onclick="nextCard()">下一题 ➡</button>
+            <button class="btn btn-next" onclick="nextCard()">下一题 ▶</button>
         </div>
 
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number" id="totalCards">0</div>
-                <div class="stat-label">总题数</div>
+                <div class="stat-number" id="currentCategoryCount">0</div>
+                <div class="stat-label">当前分类</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number" id="reviewCards">0</div>
@@ -284,9 +358,9 @@
         </div>
 
         <div class="action-buttons">
-            <button class="btn-action" onclick="shuffleCards()">🔀 随机排序</button>
-            <button class="btn-action" onclick="resetProgress()">🔄 重置进度</button>
-            <button class="btn-action" onclick="showReviewMode()">📝 复习标记</button>
+            <button class="btn-action" onclick="shuffleCards()">🔀 随机</button>
+            <button class="btn-action" onclick="showReviewMode()">📝 复习</button>
+            <button class="btn-action" onclick="resetProgress()">🔄 重置</button>
         </div>
 
         <div class="review-mode" id="reviewMode" style="display: none;">
@@ -294,158 +368,189 @@
             <p>已标记 <span id="reviewCount">0</span> 道题待复习</p>
             <button class="btn btn-review" onclick="startReview()">开始复习</button>
         </div>
+
+        <div class="tips">
+            💡 <strong>提示：</strong>标记的题目会保存在本地，下次打开还在！
+        </div>
     </div>
 
     <script>
-        // 题库数据（示例）
+        // 完整题库数据
         const questionBank = {
-            "公共基础知识": [
-                {
-                    question: "算法的四个基本特征是什么？",
-                    answer: "可行性、确定性、有穷性、拥有足够的情报（输入/输出）"
-                },
-                {
-                    question: "栈的特点是什么？",
-                    answer: "先进后出（FILO）或后进先出（LIFO）"
-                },
-                {
-                    question: "队列的特点是什么？",
-                    answer: "先进先出（FIFO）"
-                },
-                {
-                    question: "二叉树的性质：叶子结点和度为2的结点有什么关系？",
-                    answer: "叶子结点数 = 度为2的结点数 + 1"
-                },
-                {
-                    question: "冒泡排序最坏情况下需要比较多少次？",
-                    answer: "n(n-1)/2 次"
-                },
-                {
-                    question: "软件测试的目的是什么？",
-                    answer: "发现错误，而不是证明程序是正确的"
-                },
-                {
-                    question: "模块独立性的两个定性指标是什么？",
-                    answer: "耦合性（低耦合好）和内聚性（高内聚好）"
-                },
-                {
-                    question: "数据库系统的核心是什么？",
-                    answer: "数据库管理系统（DBMS）"
-                },
-                {
-                    question: "E-R图中，实体、属性、联系分别用什么图形表示？",
-                    answer: "矩形表示实体，椭圆表示属性，菱形表示联系"
-                },
-                {
-                    question: "结构化程序设计的三种基本结构是什么？",
-                    answer: "顺序结构、选择结构（分支结构）、循环结构"
-                }
+            "📖 算法基础": [
+                { question: "算法的四个基本特征是什么？", answer: "① 可行性：算法中的每个步骤都必须是可以执行的<br>② 确定性：每个步骤都有明确的定义，不允许歧义<br>③ 有穷性：算法必须在有限时间内完成<br>④ 拥有足够的情报：有输入和输出" },
+                { question: "算法的时间复杂度是指？", answer: "算法在执行过程中所需要的基本运算次数<br>（注意：不是执行时间，而是计算工作量）" },
+                { question: "算法的空间复杂度是指？", answer: "算法在执行过程中所需要的计算机存储空间<br>包括：程序所占空间 + 输入数据空间 + 额外空间" },
+                { question: "常见时间复杂度从低到高的排序？", answer: "O(1)常数阶 < O(log₂n)对数阶 < O(n)线性阶 < O(nlog₂n)线性对数阶 < O(n²)平方阶 < O(2ⁿ)指数阶" },
+                { question: "时间复杂度为O(1)表示什么？", answer: "算法的执行时间是一个常数，与问题规模无关" },
+                { question: "时间复杂度为O(n)表示什么？", answer: "算法的执行时间与问题规模n成正比<br>（线性增长）" },
+                { question: "时间复杂度为O(n²)表示什么？", answer: "执行时间与n²成正比<br>（常见于双重循环，如冒泡排序）" }
             ],
-            "Word 知识点": [
-                {
-                    question: "如何设置首行缩进2字符？",
-                    answer: "右键段落 → 缩进和间距 → 特殊格式 → 首行缩进 → 2字符"
-                },
-                {
-                    question: "如何自动生成目录？",
-                    answer: "1. 为标题设置标题样式（标题1、标题2等）<br>2. 引用选项卡 → 目录 → 自动目录"
-                },
-                {
-                    question: "分节符有哪些类型？",
-                    answer: "下一页（插入分节符并分页）、连续（插入分节符但不分页）、偶数页、奇数页"
-                },
-                {
-                    question: "如何设置首页不同的页眉页脚？",
-                    answer: "双击页眉区域 → 页眉和页脚工具 → 设计选项卡 → 勾选'首页不同'"
-                },
-                {
-                    question: "邮件合并的步骤？",
-                    answer: "1. 准备主文档<br>2. 准备数据源（Excel表格）<br>3. 邮件选项卡 → 选择收件人<br>4. 插入合并域<br>5. 完成并合并"
-                }
+            "📊 数据结构": [
+                { question: "数据结构分为哪两种角度分类？", answer: "① 逻辑结构：数据元素之间的逻辑关系<br>② 存储结构（物理结构）：数据在计算机中的存储方式" },
+                { question: "数据的四种逻辑结构？", answer: "① 集合：同属一个集合，无其他关系<br>② 线性结构：一对一关系（如线性表）<br>③ 树形结构：一对多关系<br>④ 图形结构：多对多关系" },
+                { question: "常见的四种存储结构？", answer: "① 顺序存储：连续存储单元<br>② 链式存储：用指针连接<br>③ 索引存储：建立索引表<br>④ 散列存储：根据关键字计算地址" },
+                { question: "线性表的特点？", answer: "① 只有一个根结点（无前件）<br>② 只有一个终端结点（无后件）<br>③ 其他结点只有一个前件和一个后件" },
+                { question: "顺序存储和链式存储的优缺点？", answer: "顺序存储：可随机存取，但插入删除需移动大量元素<br>链式存储：插入删除方便，但不能随机存取" },
+                { question: "线性表是哪种结构？", answer: "线性结构（一对一关系）<br>注意：栈、队列、线性链表都是线性结构！" }
             ],
-            "Excel 函数": [
-                {
-                    question: "VLOOKUP函数的语法？",
-                    answer: "=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])<br>lookup_value：要查找的值<br>table_array：查找区域<br>col_index_num：返回第几列<br>range_lookup：FALSE为精确匹配，TRUE为模糊匹配"
-                },
-                {
-                    question: "SUMIF函数的用法？",
-                    answer: "=SUMIF(range, criteria, [sum_range])<br>示例：=SUMIF(A1:A10,\">60\",B1:B10)<br>对A1:A10中大于60的对应B列求和"
-                },
-                {
-                    question: "IF函数的语法？",
-                    answer: "=IF(logical_test, value_if_true, value_if_false)<br>示例：=IF(A1>=60,\"及格\",\"不及格\")"
-                },
-                {
-                    question: "如何引用绝对地址？",
-                    answer: "使用$符号，如$A$1<br>按F4键可以快速切换引用方式"
-                },
-                {
-                    question: "INDEX和MATCH组合的用法？",
-                    answer: "=INDEX(返回区域, MATCH(查找值, 查找区域, 0))<br>比VLOOKUP更灵活，可以从右向左查找"
-                }
+            "📚 栈和队列": [
+                { question: "栈的特点是什么？", answer: "先进后出（FILO / Last In First Out）<br>或后进先出（LIFO）" },
+                { question: "栈顶和栈底分别是什么？", answer: "栈顶：允许插入和删除的一端<br>栈底：不允许插入和删除的一端" },
+                { question: "队列的特点是什么？", answer: "先进先出（FIFO / First In First Out）" },
+                { question: "队尾和队头分别是什么？", answer: "队尾：允许插入的一端<br>队头：允许删除的一端" },
+                { question: "循环队列的队空条件？", answer: "front = rear（队头指针 = 队尾指针）" },
+                { question: "循环队列的队满条件？", answer: "(rear + 1) % maxsize = front" },
+                { question: "入栈序列为abcde，可能的出栈序列是？", answer: "可能的：edcba、abcde、dcbae等<br>不可能的：decba（e先出则abd已全部入栈，出栈只能是edcba）" }
             ],
-            "Excel 数据透视表": [
-                {
-                    question: "数据透视表的四个区域？",
-                    answer: "筛选器、列、行、值"
-                },
-                {
-                    question: "如何创建数据透视表？",
-                    answer: "1. 选中数据源<br>2. 插入选项卡 → 数据透视表<br>3. 确认数据区域和放置位置<br>4. 拖动字段到四个区域"
-                },
-                {
-                    question: "如何更改值字段的汇总方式？",
-                    answer: "右键点击值区域 → 值字段设置 → 选择汇总方式（求和、计数、平均值等）"
-                },
-                {
-                    question: "使用分类汇总前必须做什么？",
-                    answer: "必须先按分类字段排序，否则分类汇总结果会不正确"
-                }
+            "🌳 树和二叉树": [
+                { question: "二叉树的重要性质：叶子结点和度为2的结点关系？", answer: "叶子结点数 = 度为2的结点数 + 1<br>即：n₀ = n₂ + 1" },
+                { question: "深度为k的二叉树最多有多少个结点？", answer: "2^k - 1 个结点（满二叉树）" },
+                { question: "深度为k的第k层最多有多少个结点？", answer: "2^(k-1) 个结点" },
+                { question: "完全二叉树的深度公式？", answer: "⌊log₂n⌋ + 1<br>（向下取整后加1）" },
+                { question: "前序遍历的顺序？", answer: "根 → 左 → 右<br>（先访问根，再遍历左子树，最后遍历右子树）" },
+                { question: "中序遍历的顺序？", answer: "左 → 根 → 右<br>（先遍历左子树，再访问根，最后遍历右子树）" },
+                { question: "后序遍历的顺序？", answer: "左 → 右 → 根<br>（先遍历左子树，再遍历右子树，最后访问根）" },
+                { question: "深度为5的满二叉树有多少个结点？", answer: "2⁵ - 1 = 31个结点" },
+                { question: "深度为5的满二叉树有多少个叶子结点？", answer: "2^(5-1) = 16个叶子结点<br>（第k层最多有2^(k-1)个结点）" }
             ],
-            "PPT 知识点": [
-                {
-                    question: "如何进入幻灯片母版视图？",
-                    answer: "视图选项卡 → 母版视图组 → 幻灯片母版"
-                },
-                {
-                    question: "动画的四种类型？",
-                    answer: "进入动画、强调动画、退出动画、动作路径"
-                },
-                {
-                    question: "动画的开始方式有哪三种？",
-                    answer: "单击开始、与上一个动画同时、上一个动画之后"
-                },
-                {
-                    question: "如何从当前幻灯片开始放映？",
-                    answer: "按 Shift + F5"
-                },
-                {
-                    question: "如何设置幻灯片切换效果？",
-                    answer: "切换选项卡 → 切换到此幻灯片组 → 选择切换效果"
-                }
+            "🔍 查找和排序": [
+                { question: "顺序查找的时间复杂度？", answer: "O(n)<br>对存储结构无要求，适合无序表" },
+                { question: "二分查找的时间复杂度？", answer: "O(log₂n)<br>要求：线性表是有序的顺序存储" },
+                { question: "冒泡排序最坏情况比较次数？", answer: "n(n-1)/2 次<br>（也是交换次数）" },
+                { question: "冒泡排序的时间复杂度？", answer: "平均和最坏都是 O(n²)<br>是稳定的排序算法" },
+                { question: "快速排序的时间复杂度？", answer: "平均：O(nlog₂n)<br>最坏（有序时）：O(n²)<br>是不稳定的排序算法" },
+                { question: "堆排序的时间复杂度？", answer: "O(nlog₂n)<br>最坏情况也是O(nlog₂n)<br>是不稳定的排序算法" },
+                { question: "哪些排序算法是稳定的？", answer: "稳定排序：冒泡排序、归并排序、插入排序<br>不稳定：快速排序、选择排序、希尔排序、堆排序" },
+                { question: "最坏情况下比较次数最少的是？", answer: "堆排序<br>因为O(nlog₂n)比其他O(n²)的排序少" }
             ],
-            "快捷键": [
-                {
-                    question: "Word中，居中对齐的快捷键？",
-                    answer: "Ctrl + E"
-                },
-                {
-                    question: "Excel中，自动求和的快捷键？",
-                    answer: "Alt + ="
-                },
-                {
-                    question: "PPT中，新建幻灯片的快捷键？",
-                    answer: "Ctrl + M"
-                },
-                {
-                    question: "在Office中，保存的快捷键？",
-                    answer: "Ctrl + S"
-                },
-                {
-                    question: "在Excel中，从当前单元格向上、下、左、右快速移动到数据边缘的快捷键？",
-                    answer: "Ctrl + 方向键（上、下、左、右）"
-                }
+            "💻 程序设计": [
+                { question: "结构化程序设计的三种基本结构？", answer: "① 顺序结构<br>② 选择结构（分支结构）<br>③ 循环结构" },
+                { question: "面向对象的三大特性？", answer: "① 封装：隐藏内部细节<br>② 继承：子类继承父类<br>③ 多态：同一操作不同表现" },
+                { question: "封装的作用是？", answer: "实现信息隐蔽<br>隐藏对象的内部细节，只对外提供接口" },
+                { question: "一个类可以定义几个对象？", answer: "可以定义多个对象（实例）" },
+                { question: "结构化程序设计的核心思想？", answer: "① 自顶向下<br>② 逐步求精<br>③ 模块化<br>④ 限制使用goto语句" }
+            ],
+            "🏗️ 软件工程": [
+                { question: "软件测试的目的是？", answer: "发现错误<br>而不是证明程序是正确的！" },
+                { question: "软件测试的步骤顺序？", answer: "单元测试 → 集成测试 → 确认测试 → 系统测试" },
+                { question: "黑盒测试和白盒测试的区别？", answer: "黑盒测试（功能测试）：不考虑内部逻辑，只测功能<br>白盒测试（结构测试）：考虑内部逻辑" },
+                { question: "模块独立性的两个指标？", answer: "① 耦合性：模块间依赖程度（目标：低耦合）<br>② 内聚性：模块内部结合程度（目标：高内聚）" },
+                { question: "软件维护中占比最大的是？", answer: "完善性维护（50-60%）<br>用于增强功能" },
+                { question: "软件生命周期的三个时期？", answer: "① 软件定义期：问题定义、可行性研究、需求分析<br>② 软件开发期：概要设计、详细设计、编码、测试<br>③ 软件维护期：使用和维护" },
+                { question: "软件按功能分为哪三类？", answer: "① 应用软件<br>② 系统软件<br>③ 支撑软件（工具软件）" }
+            ],
+            "🗄️ 数据库基础": [
+                { question: "数据库系统的核心是？", answer: "数据库管理系统（DBMS）" },
+                { question: "E-R图中三种图形分别表示什么？", answer: "矩形：实体<br>椭圆：属性<br>菱形：联系" },
+                { question: "关系表中的一行叫什么？", answer: "元组（记录）" },
+                { question: "关系表中的一列叫什么？", answer: "属性（字段）" },
+                { question: "主键的作用？", answer: "唯一标识元组的属性或属性组<br>主键值不能重复也不能为空" },
+                { question: "E-R图转换为关系模型的规则？", answer: "① 1:1联系：可合并到任意一端<br>② 1:n联系：合并到n端<br>③ m:n联系：必须转换为独立关系模式" },
+                { question: "关系的基本运算？", answer: "① 选择（σ）：选取满足条件的元组（行）<br>② 投影（π）：选择若干属性列（列）<br>③ 连接（∞）：拼接两个关系" },
+                { question: "数据库设计包括哪两个方面？", answer: "① 概念设计（用E-R图）<br>② 逻辑设计（转换为关系模型）" },
+                { question: "层次模型用什么结构表示？", answer: "树状结构<br>每个结点只有一个父结点" },
+                { question: "关系数据库用什么表示联系？", answer: "二维表" }
+            ],
+            "📝 Word基础": [
+                { question: "用于查看打印效果的视图是？", answer: "页面视图<br>显示与实际打印效果一致的文档" },
+                { question: "Word中，粘贴的快捷键？", answer: "Ctrl + V" },
+                { question: "Word中，加粗的快捷键？", answer: "Ctrl + B" },
+                { question: "Word中，居中对齐的快捷键？", answer: "Ctrl + E" },
+                { question: "Word中，两端对齐的快捷键？", answer: "Ctrl + J" },
+                { question: "样式是指什么？", answer: "字符格式和段落格式的集合<br>可以快速统一设置文本格式" },
+                { question: "首行缩进2字符在哪里设置？", answer: "在\"段落\"对话框中设置<br>特殊格式 → 首行缩进 → 2字符" },
+                { question: "分节符的作用是？", answer: "将文档分成若干节，每节可以有不同的页面设置<br>类型：下一页、连续、偶数页、奇数页" },
+                { question: "如何使文档从第3页开始编页码？", answer: "① 在第2页末尾插入分节符（下一页）<br>② 取消\"链接到前一条页眉\"<br>③ 设置页码格式，起始页码为1" },
+                { question: "自动生成目录的前提是？", answer: "必须先为标题设置标题样式（标题1、标题2...）" },
+                { question: "邮件合并的三个组成部分？", answer: "① 主文档（如邀请函）<br>② 数据源（如Excel表格）<br>③ 合并域（插入占位符）" }
+            ],
+            "📊 Excel基础": [
+                { question: "Excel的绝对引用符号是？", answer: "$（美元符号）<br>如$A$1，按F4键快速切换" },
+                { question: "相对引用和绝对引用的区别？", answer: "相对引用：复制时引用会随位置变化<br>绝对引用：复制时引用不变<br>混合引用：$A1或A$1" },
+                { question: "Excel的数据类型包括？", answer: "① 数值型（可计算）<br>② 文本型（左对齐）<br>③ 日期时间型<br>④ 逻辑型<br>⑤ 错误值" },
+                { question: "设置单元格格式的快捷键？", answer: "Ctrl + 1" },
+                { question: "VLOOKUP函数的语法？", answer: "=VLOOKUP(查找值, 查找区域, 返回列数, 匹配方式)<br>第四参数：FALSE精确匹配，TRUE模糊匹配<br>注意：查找值必须在区域第一列！" },
+                { question: "INDEX和MATCH组合的优点？", answer: "比VLOOKUP更灵活，可以从右向左查找<br>=INDEX(返回列, MATCH(查找值, 查找列, 0))" },
+                { question: "COUNT和COUNTA的区别？", answer: "COUNT：只计数包含数值的单元格<br>COUNTA：计数非空单元格（包括文本）" },
+                { question: "条件格式的作用是？", answer: "根据单元格的值自动设置格式<br>如：大于60的显示红色" },
+                { question: "冻结窗格的作用是？", answer: "固定行或列，方便查看大型表格<br>选项：冻结首行、冻结首列、冻结拆分窗格" }
+            ],
+            "📈 Excel函数": [
+                { question: "SUMIF函数的语法？", answer: "=SUMIF(条件区域, 条件, 求和区域)<br>示例：=SUMIF(A1:A10,\">60\",B1:B10)" },
+                { question: "COUNTIF函数的语法？", answer: "=COUNTIF(区域, 条件)<br>示例：=COUNTIF(A1:A10,\">=60\")" },
+                { question: "IF函数的语法？", answer: "=IF(条件, 真值, 假值)<br>示例：=IF(A1>=60,\"及格\",\"不及格\")" },
+                { question: "AND函数和OR函数的区别？", answer: "AND：所有条件都为真才返回TRUE<br>OR：任一条件为真就返回TRUE" },
+                { question: "LEFT/RIGHT/MID函数的区别？", answer: "LEFT：从文本左侧截取<br>RIGHT：从文本右侧截取<br>MID：从文本中间截取" },
+                { question: "TRIM函数的作用是？", answer: "删除文本中多余的空格<br>（保留单词间的单个空格）" },
+                { question: "LEN函数的作用是？", answer: "返回文本的字符个数" },
+                { question: "TODAY函数和NOW函数的区别？", answer: "TODAY()：返回当前日期<br>NOW()：返回当前日期和时间" },
+                { question: "DATEDIF函数的作用是？", answer: "计算两个日期之间的差值<br>=DATEDIF(开始日期, 结束日期, \"单位\")<br>单位：\"Y\"年、\"M\"月、\"D\"日" },
+                { question: "AVERAGEIF函数的作用是？", answer: "对满足条件的单元格求平均值<br>=AVERAGEIF(区域, 条件, 平均区域)" }
+            ],
+            "🔄 数据管理": [
+                { question: "使用分类汇总前必须先做什么？", answer: "必须先按分类字段排序！<br>否则分类汇总结果会不正确" },
+                { question: "数据透视表的四个区域？", answer: "① 筛选器<br>② 列<br>③ 行<br>④ 值" },
+                { question: "数据透视表值字段的默认汇总方式？", answer: "求和<br>（可以改为计数、平均值、最大值等）" },
+                { question: "排序时\"数据包含标题\"的作用？", answer: "勾选后，第一行会被当作标题行<br>排序时不会被移动" },
+                { question: "高级筛选中条件区域的设置规则？", answer: "同一行：条件是\"与\"的关系<br>不同行：条件是\"或\"的关系" },
+                { question: "数据验证（下拉列表）在哪里设置？", answer: "数据选项卡 → 数据工具组 → 数据验证<br>验证条件选择\"序列\"" },
+                { question: "分类汇总的汇总方式有哪些？", answer: "求和、计数、平均值、最大值、最小值、乘积等" }
+            ],
+            "📊 图表和透视表": [
+                { question: "柱形图适用于什么场景？", answer: "比较各类别数据的大小" },
+                { question: "折线图适用于什么场景？", answer: "显示数据随时间变化的趋势" },
+                { question: "饼图适用于什么场景？", answer: "显示各部分占总体的比例" },
+                { question: "创建数据透视表的步骤？", answer: "① 选中数据源（含标题）<br>② 插入 → 数据透视表<br>③ 拖动字段到四个区域" },
+                { question: "如何更改数据透视表的值汇总方式？", answer: "右键值区域 → 值字段设置<br>选择汇总方式（求和、计数、平均值等）" },
+                { question: "迷你图是什么？", answer: "工作表单元格中的微型图表<br>类型：折线图、柱形图、盈亏图" },
+                { question: "组合图的特点是？", answer: "两种图表类型组合<br>如：柱形图+折线图<br>用于同时展示不同类型的数据" }
+            ],
+            "📽️ PPT基础": [
+                { question: "统一设置幻灯片格式的视图是？", answer: "母版视图<br>可以统一设置背景、字体、占位符等" },
+                { question: "新建幻灯片的快捷键？", answer: "Ctrl + M" },
+                { question: "复制幻灯片的快捷键？", answer: "Ctrl + D" },
+                { question: "PPT的四种视图方式？", answer: "① 普通视图（默认）<br>② 幻灯片浏览视图<br>③ 阅读视图<br>④ 母版视图" },
+                { question: "从第一张开始放映的快捷键？", answer: "F5" },
+                { question: "从当前幻灯片开始放映的快捷键？", answer: "Shift + F5" },
+                { question: "退出放映的快捷键？", answer: "Esc" },
+                { question: "在母版中插入Logo会影响哪些幻灯片？", answer: "影响所有基于该母版的幻灯片<br>（这是统一格式的优势）" },
+                { question: "隐藏幻灯片后在编辑状态可见吗？", answer: "可见！<br>隐藏只是放映时不显示" }
+            ],
+            "✨ PPT动画": [
+                { question: "动画的四种类型？", answer: "① 进入动画：对象出现效果<br>② 强调动画：突出显示效果<br>③ 退出动画：对象离开效果<br>④ 动作路径：沿路径移动" },
+                { question: "动画的三种开始方式？", answer: "① 单击开始<br>② 与上一个动画同时<br>③ 上一个动画之后" },
+                { question: "设置切换效果在哪里？", answer: "切换选项卡<br>→ 切换到此幻灯片组" },
+                { question: "切换效果可以设置哪些内容？", answer: "① 切换声音<br>② 持续时间<br>③ 换片方式（单击/自动换片）" },
+                { question: "插入超链接的快捷键？", answer: "Ctrl + K" },
+                { question: "超链接可以链接到哪些内容？", answer: "① 现有文件或网页<br>② 本文档中的位置（幻灯片）<br>③ 新建文档<br>④ 电子邮件地址" },
+                { question: "动作按钮可以链接到？", answer: "下一张、上一张、第一张、最后一张幻灯片<br>结束放映、其他文件、URL等" }
+            ],
+            "⌨️ Office快捷键": [
+                { question: "新建文档的快捷键？", answer: "Ctrl + N" },
+                { question: "保存文档的快捷键？", answer: "Ctrl + S" },
+                { question: "另存为的快捷键？", answer: "F12" },
+                { question: "打印的快捷键？", answer: "Ctrl + P" },
+                { question: "撤销的快捷键？", answer: "Ctrl + Z" },
+                { question: "恢复/重做的快捷键？", answer: "Ctrl + Y" },
+                { question: "查找的快捷键？", answer: "Ctrl + F" },
+                { question: "替换的快捷键？", answer: "Ctrl + H" },
+                { question: "Excel自动求和的快捷键？", answer: "Alt + =" },
+                { question: "Excel快速移动到数据边缘的快捷键？", answer: "Ctrl + 方向键" },
+                { question: "Excel在多个单元格输入相同内容的快捷键？", answer: "选中多个单元格后，输入内容按 Ctrl + Enter" },
+                { question: "Word插入分页符的快捷键？", answer: "Ctrl + Enter" },
+                { question: "Excel输入当前日期的快捷键？", answer: "Ctrl + ;" },
+                { question: "Excel输入当前时间的快捷键？", answer: "Ctrl + Shift + :" }
+            ],
+            "📋 文件格式": [
+                { question: "Word 2016的默认文档扩展名？", answer: ".docx" },
+                { question: "Word启用宏的文档扩展名？", answer: ".docm" },
+                { question: "Word模板文件扩展名？", answer: ".dotx" },
+                { question: "Excel工作簿的扩展名？", answer: ".xlsx" },
+                { question: "Excel启用宏的工作簿扩展名？", answer: ".xlsm" },
+                { question: "PPT演示文稿的扩展名？", answer: ".pptx" },
+                { question: "PPT放映文件的扩展名？", answer: ".ppsx" },
+                { question: "如何打印不连续的页面？", answer: "用逗号分隔不连续页，用连字符表示连续页<br>如：1,3,5-7" }
             ]
         };
 
@@ -454,6 +559,15 @@
         let cards = [];
         let markedCards = new Set();
         let isFlipped = false;
+        let isReviewMode = false;
+
+        // 初始化
+        function init() {
+            document.getElementById('totalQuestions').textContent = Object.values(questionBank).reduce((sum, arr) => sum + arr.length, 0);
+            document.getElementById('totalCategories').textContent = Object.keys(questionBank).length;
+            loadProgress();
+            initCategories();
+        }
 
         // 初始化分类选择器
         function initCategories() {
@@ -463,12 +577,12 @@
             Object.keys(questionBank).forEach((category, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'category-btn' + (index === 0 ? ' active' : '');
-                btn.textContent = category;
+                const count = questionBank[category].length;
+                btn.innerHTML = category + '<span class="count">' + count + '</span>';
                 btn.onclick = () => selectCategory(category);
                 selector.appendChild(btn);
             });
 
-            // 默认选中第一个分类
             if (Object.keys(questionBank).length > 0) {
                 selectCategory(Object.keys(questionBank)[0]);
             }
@@ -476,14 +590,18 @@
 
         // 选择分类
         function selectCategory(category) {
+            if (isReviewMode) {
+                isReviewMode = false;
+                document.getElementById('reviewMode').style.display = 'none';
+            }
+            
             currentCategory = category;
             cards = [...questionBank[category]];
             currentIndex = 0;
             isFlipped = false;
 
-            // 更新按钮状态
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent === category);
+                btn.classList.toggle('active', btn.textContent.includes(category));
             });
 
             updateCard();
@@ -495,6 +613,7 @@
             const card = document.getElementById('flashcard');
             const content = document.getElementById('cardContent');
             const cardNumber = document.getElementById('cardNumber');
+            const cardType = document.getElementById('cardType');
             
             if (cards.length === 0) {
                 content.innerHTML = '该分类暂无题目';
@@ -504,6 +623,7 @@
 
             const currentCard = cards[currentIndex];
             content.innerHTML = isFlipped ? currentCard.answer : currentCard.question;
+            cardType.textContent = isFlipped ? '答案' : '题目';
             
             if (isFlipped) {
                 card.classList.add('flipped');
@@ -513,6 +633,7 @@
 
             cardNumber.textContent = `${currentIndex + 1} / ${cards.length}`;
             updateProgress();
+            updateMarkButton();
         }
 
         // 翻转卡片
@@ -586,11 +707,8 @@
 
         // 更新统计
         function updateStats() {
-            const totalCards = Object.values(questionBank).reduce((sum, arr) => sum + arr.length, 0);
-            document.getElementById('totalCards').textContent = totalCards;
+            document.getElementById('currentCategoryCount').textContent = cards.length;
             document.getElementById('markedCards').textContent = markedCards.size;
-            
-            // 计算待复习数量（这里简化为标记的数量）
             document.getElementById('reviewCards').textContent = markedCards.size;
             document.getElementById('reviewCount').textContent = markedCards.size;
         }
@@ -607,19 +725,17 @@
             currentIndex = 0;
             isFlipped = false;
             updateCard();
-            alert('已随机排序！');
         }
 
         // 重置进度
         function resetProgress() {
-            if (confirm('确定要重置所有进度吗？这将清除所有标记。')) {
+            if (confirm('确定要重置所有标记吗？')) {
                 markedCards.clear();
                 currentIndex = 0;
                 isFlipped = false;
                 updateCard();
                 updateStats();
                 saveProgress();
-                alert('进度已重置！');
             }
         }
 
@@ -636,8 +752,24 @@
                 return;
             }
 
-            alert('复习功能开发中...');
-            // 这里可以实现只显示标记的题目
+            // 收集所有标记的题目
+            let reviewQuestions = [];
+            Object.keys(questionBank).forEach(category => {
+                questionBank[category].forEach((q, index) => {
+                    if (markedCards.has(`${category}-${index}`)) {
+                        reviewQuestions.push({ ...q, category, index });
+                    }
+                });
+            });
+
+            // 切换到特殊模式显示标记的题目
+            isReviewMode = true;
+            cards = reviewQuestions;
+            currentIndex = 0;
+            isFlipped = false;
+            document.getElementById('reviewMode').style.display = 'none';
+            updateCard();
+            updateStats();
         }
 
         // 保存进度到 localStorage
@@ -664,8 +796,7 @@
         });
 
         // 初始化
-        loadProgress();
-        initCategories();
+        init();
     </script>
 </body>
 </html>
