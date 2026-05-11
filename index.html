@@ -469,6 +469,10 @@ h1 {
     color: #92400e;
     font-weight: 600;
     list-style: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(146, 64, 14, 0.15);
 }
 
 .data-reset-summary::-webkit-details-marker {
@@ -500,6 +504,37 @@ h1 {
 
 .data-reset-zone .tool-btn-danger-outline {
     margin-top: 4px;
+}
+
+.reset-confirm-block {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #fbbf24;
+}
+
+.reset-phrase-label {
+    display: block;
+    font-size: 12px;
+    color: #78350f;
+    margin-bottom: 8px;
+    line-height: 1.45;
+}
+
+.reset-phrase-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid #d97706;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.reset-confirm-block .tool-btn-danger-outline {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 0;
 }
 
 .tool-btn-danger-outline {
@@ -2166,10 +2201,15 @@ h1 {
             <div class="data-reset-panel">
                 <p class="data-reset-warn"><strong>警告：</strong>将永久删除当前浏览器内保存的闪卡标记、掌握度（不会/模糊/已会）、今日打卡、以及进行中的选择题测试。操作不可撤销；网站上的题目内容不会删除。</p>
                 <ol class="data-reset-steps">
-                    <li>点击下方按钮后，将依次出现 <strong>两次确认窗口</strong>，并需输入口令 <strong>确认清空</strong>（四字，无空格）。</li>
-                    <li>进度仅保存在本机；换设备或无痕模式本就没有旧数据，一般不必特意清空。</li>
+                    <li>先点下方按钮通过第一次确认，再<strong>在页面里输入口令</strong>（手机端不使用弹窗输入，避免被系统拦截）。口令为 <strong>确认清空</strong> 四字。</li>
+                    <li>最后会再弹出一次确认；进度仅保存在本机。</li>
                 </ol>
-                <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">我了解风险，继续清空…</button>
+                <button type="button" class="tool-btn tool-btn-danger-outline reset-start-btn" onclick="startResetFromPanel(this)">我了解风险，继续清空…</button>
+                <div class="reset-confirm-block" hidden>
+                    <label class="reset-phrase-label">请在输入框内输入口令：<strong>确认清空</strong>（无空格）</label>
+                    <input type="text" class="reset-phrase-input" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="在此输入：确认清空">
+                    <button type="button" class="tool-btn tool-btn-danger-outline" onclick="executeResetFromPanel(this)">校验口令并执行清空</button>
+                </div>
             </div>
         </details>
         </section>
@@ -2404,10 +2444,15 @@ h1 {
             <div class="data-reset-panel">
                 <p class="data-reset-warn"><strong>警告：</strong>将永久删除当前浏览器内保存的闪卡标记、掌握度（不会/模糊/已会）、今日打卡、以及进行中的选择题测试。操作不可撤销；网站上的题目内容不会删除。</p>
                 <ol class="data-reset-steps">
-                    <li>点击下方按钮后，将依次出现 <strong>两次确认窗口</strong>，并需输入口令 <strong>确认清空</strong>（四字，无空格）。</li>
-                    <li>进度仅保存在本机；换设备或无痕模式本就没有旧数据，一般不必特意清空。</li>
+                    <li>先点下方按钮通过第一次确认，再<strong>在页面里输入口令</strong>（手机端不使用弹窗输入，避免被系统拦截）。口令为 <strong>确认清空</strong> 四字。</li>
+                    <li>最后会再弹出一次确认；进度仅保存在本机。</li>
                 </ol>
-                <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">我了解风险，继续清空…</button>
+                <button type="button" class="tool-btn tool-btn-danger-outline reset-start-btn" onclick="startResetFromPanel(this)">我了解风险，继续清空…</button>
+                <div class="reset-confirm-block" hidden>
+                    <label class="reset-phrase-label">请在输入框内输入口令：<strong>确认清空</strong>（无空格）</label>
+                    <input type="text" class="reset-phrase-input" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="在此输入：确认清空">
+                    <button type="button" class="tool-btn tool-btn-danger-outline" onclick="executeResetFromPanel(this)">校验口令并执行清空</button>
+                </div>
             </div>
         </details>
 
@@ -2715,6 +2760,7 @@ h1 {
             initDailyChecklist();
             initCategories();
             initBankCategoryToggle();
+            initDataResetZones();
             renderBankFilters();
             renderBank();
             updateBankStats();
@@ -3511,33 +3557,66 @@ h1 {
             saveProgress();
         }
 
-        // 清空进度：三步确认（含口令），防误触
-        function resetProgress() {
+        function restoreResetPanelUI(zone) {
+            const block = zone.querySelector('.reset-confirm-block');
+            const start = zone.querySelector('.reset-start-btn');
+            const inp = zone.querySelector('.reset-phrase-input');
+            if (block) block.hidden = true;
+            if (start) start.hidden = false;
+            if (inp) inp.value = '';
+        }
+
+        function initDataResetZones() {
+            document.querySelectorAll('.data-reset-zone').forEach(zone => {
+                zone.addEventListener('toggle', () => {
+                    if (!zone.open) restoreResetPanelUI(zone);
+                });
+            });
+        }
+
+        function startResetFromPanel(btn) {
+            const zone = btn.closest('.data-reset-zone');
+            if (!zone) return;
             const msg1 = '【第 1 步 / 共 3 步】清空复习进度\n\n' +
                 '将删除：闪卡标记、掌握度分级、今日打卡、进行中的选择题测试。\n' +
                 '数据仅存于本浏览器，清空后无法恢复。\n\n' +
                 '是否继续？';
             if (!confirm(msg1)) return;
+            const block = zone.querySelector('.reset-confirm-block');
+            const start = zone.querySelector('.reset-start-btn');
+            if (block) block.hidden = false;
+            if (start) start.hidden = true;
+            const inp = zone.querySelector('.reset-phrase-input');
+            if (inp) {
+                inp.value = '';
+                requestAnimationFrame(() => {
+                    try {
+                        inp.focus({ preventScroll: false });
+                    } catch (e) {
+                        inp.focus();
+                    }
+                });
+            }
+            block?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
 
-            const phrase = window.prompt(
-                '【第 2 步 / 共 3 步】口令验证\n\n' +
-                '请完整输入下面四个字（中间无空格）：\n确认清空\n\n' +
-                '点「取消」或输错均会中止。'
-            );
-            if (phrase === null) {
-                alert('已取消。未做任何修改。');
+        function executeResetFromPanel(btn) {
+            const zone = btn.closest('.data-reset-zone');
+            if (!zone) return;
+            const inp = zone.querySelector('.reset-phrase-input');
+            if (!inp || inp.value.trim() !== '确认清空') {
+                alert('口令不正确。请在本页输入框中输入「确认清空」四字（无空格）。');
                 return;
             }
-            if (phrase.trim() !== '确认清空') {
-                alert('口令不正确，已取消。未做任何修改。');
-                return;
-            }
-
             if (!confirm('【第 3 步 / 共 3 步】最后确认\n\n确定要立即清空全部本地复习数据？\n点「确定」后将立刻执行。')) {
                 return;
             }
-
             performProgressReset();
+            restoreResetPanelUI(zone);
+            try {
+                zone.open = false;
+            } catch (e) { /* ignore */ }
+            alert('已清空本机复习进度。');
         }
 
         // 显示复习模式

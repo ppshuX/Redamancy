@@ -460,6 +460,10 @@ h1 {
     color: #92400e;
     font-weight: 600;
     list-style: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(146, 64, 14, 0.15);
 }
 
 .data-reset-summary::-webkit-details-marker {
@@ -491,6 +495,37 @@ h1 {
 
 .data-reset-zone .tool-btn-danger-outline {
     margin-top: 4px;
+}
+
+.reset-confirm-block {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #fbbf24;
+}
+
+.reset-phrase-label {
+    display: block;
+    font-size: 12px;
+    color: #78350f;
+    margin-bottom: 8px;
+    line-height: 1.45;
+}
+
+.reset-phrase-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid #d97706;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.reset-confirm-block .tool-btn-danger-outline {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 0;
 }
 
 .tool-btn-danger-outline {
