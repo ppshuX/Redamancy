@@ -1626,9 +1626,26 @@ h1 {
 }
 
 .countdown-bar-text {
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 600;
+    text-align: right;
+    max-width: 7.5rem;
+}
+
+.countdown-bar-line {
     white-space: nowrap;
-    font-weight: 500;
+}
+
+.countdown-bar-range {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.85;
+    white-space: nowrap;
 }
 
 /* 月份卡片 */
@@ -1917,6 +1934,13 @@ h1 {
         width: 100%;
     }
 
+    .countdown-bar-text {
+        align-items: center;
+        text-align: center;
+        max-width: none;
+        width: 100%;
+    }
+
     .plan-cards {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -2046,7 +2070,10 @@ h1 {
                         <div class="countdown-bar">
                             <div class="countdown-bar-fill" id="studyProgress"></div>
                         </div>
-                        <span class="countdown-bar-text">复习进度 <span id="progressPercent">0</span>%</span>
+                        <span class="countdown-bar-text">
+                            <span class="countdown-bar-line">时间进度 <span id="progressPercent">0</span>%</span>
+                            <span class="countdown-bar-range">5月1日—9月19日</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -2779,13 +2806,14 @@ h1 {
             document.getElementById('countdownDays').textContent = Math.max(0, diffDays);
         }
 
-        // 复习进度条：备考起点至首考日
+        // 时间进度条：当年备考区间 5月1日—9月19日（与首考日对齐）
         function updateTimelineProgress() {
             const today = new Date();
             const startDate = new Date(2026, 4, 1);
             const examDate = new Date(2026, 8, 19);
+            const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             const totalDays = (examDate - startDate) / (1000 * 60 * 60 * 24);
-            const passedDays = (today - startDate) / (1000 * 60 * 60 * 24);
+            const passedDays = (startOfToday - startDate) / (1000 * 60 * 60 * 24);
             const percent = Math.min(100, Math.max(0, Math.round((passedDays / totalDays) * 100)));
             document.getElementById('studyProgress').style.width = percent + '%';
             document.getElementById('progressPercent').textContent = percent;

@@ -1617,9 +1617,26 @@ h1 {
 }
 
 .countdown-bar-text {
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 600;
+    text-align: right;
+    max-width: 7.5rem;
+}
+
+.countdown-bar-line {
     white-space: nowrap;
-    font-weight: 500;
+}
+
+.countdown-bar-range {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.85;
+    white-space: nowrap;
 }
 
 /* 月份卡片 */
@@ -1905,6 +1922,13 @@ h1 {
     }
 
     .countdown-bar {
+        width: 100%;
+    }
+
+    .countdown-bar-text {
+        align-items: center;
+        text-align: center;
+        max-width: none;
         width: 100%;
     }
 
