@@ -456,6 +456,35 @@ h1 {
     margin-top: 14px;
 }
 
+.data-reset-bar {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.tool-btn-danger-outline {
+    background: #fff;
+    border: 1px solid #f87171;
+    color: #b91c1c;
+}
+
+.tool-btn-danger-outline:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.data-reset-note {
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 520px;
+}
+
 .mobile-start {
     display: none;
 }
@@ -2102,6 +2131,11 @@ h1 {
             <button class="tool-btn" onclick="showView('cardsView')">进入抽认卡刷题</button>
             <button class="tool-btn" onclick="showView('practiceView')">查看操作训练清单</button>
         </div>
+
+        <div class="data-reset-bar">
+            <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">清空本地复习进度</button>
+            <small class="data-reset-note">将清除本机保存的闪卡标记、掌握度、今日打卡与进行中的选择题测试，且不可恢复。</small>
+        </div>
         </section>
 
         <section class="view" id="bankView">
@@ -2311,7 +2345,7 @@ h1 {
         <div class="action-buttons">
             <button class="btn-action" onclick="shuffleCards()">🔀 随机</button>
             <button class="btn-action" onclick="showReviewMode()">📝 复习</button>
-            <button class="btn-action" onclick="resetProgress()">🔄 重置</button>
+            <button class="btn-action" onclick="resetProgress()">清空复习进度</button>
         </div>
 
         <div class="review-mode" id="reviewMode" style="display: none;">
@@ -2331,7 +2365,7 @@ h1 {
         </div>
 
         <div class="tips">
-            💡 <strong>提示：</strong>标记、掌握度和今日打卡都会保存在本地，下次打开还在！
+            💡 <strong>提示：</strong>标记、掌握度和今日打卡保存在本机。可在本页底部「清空复习进度」或总览页同名按钮清除。
         </div>
         </section>
     </div>
@@ -3393,22 +3427,45 @@ h1 {
             updateStats();
         }
 
+        function resetExamToIdle() {
+            examQuestions = [];
+            examAnswers = {};
+            examIndex = 0;
+            examStartedAt = null;
+            examLimitSeconds = 0;
+            if (examTimer) {
+                clearInterval(examTimer);
+                examTimer = null;
+            }
+            const metaEl = document.getElementById('examMeta');
+            const bodyEl = document.getElementById('examBody');
+            if (metaEl) metaEl.textContent = '建议先做10题快测，再做20题模拟。';
+            if (bodyEl) {
+                bodyEl.className = 'exam-result';
+                bodyEl.innerHTML = '点击「10题快测」或「20题模拟」开始。测试会记录用时、正确率和错题解析，答错的题会自动计入薄弱统计。';
+            }
+        }
+
         // 重置进度
         function resetProgress() {
-            if (confirm('确定要重置所有标记、掌握度和今日打卡吗？')) {
-                markedCards.clear();
-                mastery = {};
-                dailyDone = {};
-                examQuestions = [];
-                examAnswers = {};
-                if (examTimer) clearInterval(examTimer);
-                currentIndex = 0;
-                isFlipped = false;
-                initDailyChecklist();
-                updateCard();
-                updateStats();
-                saveProgress();
+            if (!confirm('确定清空本地复习进度？\n\n将清除：闪卡标记、掌握度分级、今日打卡、进行中的选择题测试。\n此操作不可恢复。')) {
+                return;
             }
+            markedCards = new Set();
+            mastery = {};
+            dailyDone = {};
+            resetExamToIdle();
+            currentIndex = 0;
+            isFlipped = false;
+            localStorage.removeItem('ncreMarkedCards');
+            localStorage.removeItem('ncreMastery');
+            localStorage.removeItem('ncreDailyDone');
+            initDailyChecklist();
+            updateCard();
+            updateStats();
+            renderBank();
+            updateBankStats();
+            saveProgress();
         }
 
         // 显示复习模式
