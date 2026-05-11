@@ -1534,6 +1534,45 @@ h1 {
     margin-bottom: 28px;
 }
 
+/* 总览：月度路线 + 每日计划折叠，缩短首屏 */
+.overview-extra-fold {
+    margin-bottom: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.overview-extra-fold summary {
+    cursor: pointer;
+    user-select: none;
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.overview-extra-fold summary::-webkit-details-marker {
+    display: none;
+}
+
+.overview-extra-fold .fold-inner {
+    padding: 0 0 4px;
+}
+
+.overview-extra-fold .plan-cards {
+    margin: 16px 12px 20px;
+}
+
+.overview-extra-fold .daily-card {
+    margin: 0 12px 16px;
+}
+
 .plan-card {
     background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
     border: 2px solid #e5e7eb;
@@ -1776,6 +1815,14 @@ h1 {
     .plan-cards {
         grid-template-columns: 1fr;
         gap: 12px;
+    }
+
+    .overview-extra-fold .plan-cards {
+        margin: 12px 8px 16px;
+    }
+
+    .overview-extra-fold .daily-card {
+        margin: 0 8px 14px;
     }
 
     .plan-card {
