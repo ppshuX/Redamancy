@@ -40,8 +40,45 @@
         .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-size: 13px;
+        }
+
+        .top-nav {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 6px;
+            margin: 0 auto 22px;
+            max-width: 760px;
+            padding: 6px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 0;
+            border-radius: 6px;
+            color: #4b5563;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 10px 8px;
+        }
+
+        .nav-btn.active {
+            background: #667eea;
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.25);
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
         }
 
         .hero-summary {
@@ -167,6 +204,13 @@
         .resource-links a:hover {
             border-color: #667eea;
             color: #667eea;
+        }
+
+        .overview-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 14px;
         }
 
         .study-tools {
@@ -653,7 +697,9 @@
             .quick-grid,
             .study-tools,
             .quick-actions,
-            .check-grid {
+            .check-grid,
+            .top-nav,
+            .overview-actions {
                 grid-template-columns: 1fr;
             }
 
@@ -674,6 +720,14 @@
         <h1>📚 二级 MS Office 背书</h1>
         <div class="subtitle">学习总览 + 高频速记 + 操作训练清单 + 抽认卡刷题</div>
 
+        <div class="top-nav">
+            <button class="nav-btn active" data-view="overviewView" onclick="showView('overviewView')">总览</button>
+            <button class="nav-btn" data-view="practiceView" onclick="showView('practiceView')">操作训练</button>
+            <button class="nav-btn" data-view="examView" onclick="showView('examView')">选择题测试</button>
+            <button class="nav-btn" data-view="cardsView" onclick="showView('cardsView')">抽认卡刷题</button>
+        </div>
+
+        <section class="view active" id="overviewView">
         <div class="hero-summary">
             <div class="summary-card">
                 <strong>考试结构</strong>
@@ -733,6 +787,14 @@
             </div>
         </div>
 
+        <div class="overview-actions">
+            <button class="tool-btn" onclick="showView('examView')">开始选择题测试</button>
+            <button class="tool-btn" onclick="showView('cardsView')">进入抽认卡刷题</button>
+            <button class="tool-btn" onclick="showView('practiceView')">查看操作训练清单</button>
+        </div>
+        </section>
+
+        <section class="view" id="practiceView">
         <div class="section-title">
             <strong>操作题训练清单</strong>
             <small>每做一套题都按这个清单检查，避免会做但漏步骤</small>
@@ -799,7 +861,9 @@
             <a href="知识库大全.md">打开知识库大全</a>
             <a href="二级MS%20Office超全题库.md">打开超全题库</a>
         </div>
+        </section>
 
+        <section class="view" id="examView">
         <div class="section-title">
             <strong>选择题测试</strong>
             <small>模拟考试节奏，提交后自动判分并给错题解析</small>
@@ -821,7 +885,9 @@
                 点击“10题快测”或“20题模拟”开始。测试会记录用时、正确率和错题解析，答错的题会自动计入薄弱统计。
             </div>
         </div>
+        </section>
 
+        <section class="view" id="cardsView">
         <div class="total-stats">
             <div class="total-stat">
                 <div class="number" id="totalQuestions">0</div>
@@ -916,6 +982,7 @@
         <div class="tips">
             💡 <strong>提示：</strong>标记、掌握度和今日打卡都会保存在本地，下次打开还在！
         </div>
+        </section>
     </div>
 
     <script>
@@ -1213,6 +1280,15 @@
             return [...flashCards, ...examCards];
         }
 
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.toggle('active', view.id === viewId);
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === viewId);
+            });
+        }
+
         // 初始化分类选择器
         function initCategories() {
             const selector = document.getElementById('categorySelector');
@@ -1234,6 +1310,7 @@
 
         // 选择分类
         function selectCategory(category) {
+            showView('cardsView');
             if (isReviewMode) {
                 isReviewMode = false;
                 document.getElementById('reviewMode').style.display = 'none';
@@ -1414,6 +1491,7 @@
         }
 
         function showAllCards() {
+            showView('cardsView');
             document.getElementById('searchInput').value = '';
             setCards(flattenCards(), '全部题库');
         }
@@ -1435,6 +1513,7 @@
         }
 
         function startToday() {
+            showView('cardsView');
             const pool = flattenCards();
             for (let i = pool.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -1445,6 +1524,7 @@
         }
 
         function startWeakReview() {
+            showView('cardsView');
             const weakIds = new Set(Object.entries(mastery)
                 .filter(([, level]) => level === 'hard' || level === 'fuzzy')
                 .map(([id]) => id));
@@ -1458,6 +1538,7 @@
         }
 
         function startChoiceExam(count) {
+            showView('examView');
             const pool = [...choiceExamBank];
             for (let i = pool.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
