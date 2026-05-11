@@ -1933,7 +1933,7 @@ h1 {
 
         <div class="section-title">
             <strong>📅 备考冲刺</strong>
-            <small>2026年9月计算机二级 · 倒计时</small>
+            <small>2026年9月19日—21日 · 全国计算机二级（以准考证为准）</small>
         </div>
 
         <!-- 倒计时卡片 -->
@@ -1941,11 +1941,11 @@ h1 {
             <div class="countdown-body">
                 <div class="countdown-main">
                     <div class="countdown-icon">⏰</div>
-                    <div class="countdown-number" id="countdownDays">113</div>
+                    <div class="countdown-number" id="countdownDays">131</div>
                     <div class="countdown-unit">天</div>
                 </div>
                 <div class="countdown-meta">
-                    <div class="countdown-date">距离 2026年9月 考试</div>
+                    <div class="countdown-date">距首考日 9月19日 · 机考多批次，具体场次看准考证</div>
                     <div class="countdown-bar-wrap">
                         <div class="countdown-bar">
                             <div class="countdown-bar-fill" id="studyProgress"></div>
@@ -2005,7 +2005,7 @@ h1 {
                 <div class="plan-month">9月</div>
                 <div class="plan-badge">🏆 考试</div>
                 <div class="plan-name">从容应考</div>
-                <div class="plan-desc">调整心态，一次过级</div>
+                <div class="plan-desc">9/19—9/21 · 批次与时刻以准考证为准</div>
                 <div class="plan-tags">
                     <span>💪 加油</span>
                 </div>
@@ -2638,20 +2638,22 @@ h1 {
             updateTimelineProgress();
         }
 
-        // 倒计时计算
+        // 倒计时：以官方常公布的首次开考日 9 月 19 日为基准（地区/批次以准考证为准）
         function updateCountdown() {
-            const examDate = new Date('2026-09-01');
+            const examFirstDay = new Date(2026, 8, 19);
             const today = new Date();
-            const diffTime = examDate - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const startOfExam = new Date(examFirstDay.getFullYear(), examFirstDay.getMonth(), examFirstDay.getDate());
+            const diffMs = startOfExam - startOfToday;
+            const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
             document.getElementById('countdownDays').textContent = Math.max(0, diffDays);
         }
 
-        // 更新时间轴进度
+        // 复习进度条：备考起点至首考日
         function updateTimelineProgress() {
             const today = new Date();
-            const startDate = new Date('2026-05-01');
-            const examDate = new Date('2026-09-01');
+            const startDate = new Date(2026, 4, 1);
+            const examDate = new Date(2026, 8, 19);
             const totalDays = (examDate - startDate) / (1000 * 60 * 60 * 24);
             const passedDays = (today - startDate) / (1000 * 60 * 60 * 24);
             const percent = Math.min(100, Math.max(0, Math.round((passedDays / totalDays) * 100)));
