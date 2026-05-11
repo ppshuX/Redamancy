@@ -1,0 +1,8 @@
+{
+  "name": "redamancy",
+  "private": true,
+  "description": "静态页面：全国计算机二级 MS Office 背书（无 Vite/Webpack）",
+  "scripts": {
+    "build": "node -e \"process.exit(0)\""
+  }
+}
