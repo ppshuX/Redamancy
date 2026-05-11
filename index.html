@@ -713,6 +713,190 @@
                 flex-direction: column;
             }
         }
+
+        /* 题库视图样式 */
+        .bank-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .bank-stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .bank-stat-card .stat-num {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .bank-stat-card .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .bank-stat-card.purple { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .bank-stat-card.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .bank-stat-card.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
+        .bank-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .bank-filter-btn {
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            background: #fff;
+            color: #374151;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 6px 14px;
+            transition: all 0.2s;
+        }
+
+        .bank-filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .bank-filter-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: #fff;
+        }
+
+        .bank-search {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 14px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .bank-search:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .bank-category {
+            margin-bottom: 24px;
+        }
+
+        .bank-category-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bank-category-title .count {
+            background: rgba(255,255,255,0.25);
+            border-radius: 12px;
+            font-size: 12px;
+            padding: 2px 10px;
+        }
+
+        .bank-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .bank-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bank-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+        }
+
+        .bank-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .bank-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+            flex: 1;
+        }
+
+        .bank-item-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .bank-item-badge.known { background: #dcfce7; color: #166534; }
+        .bank-item-badge.fuzzy { background: #fef3c7; color: #92400e; }
+        .bank-item-badge.hard { background: #fee2e2; color: #991b1b; }
+
+        .bank-item-preview {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .bank-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .bank-item-meta {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .bank-item-action {
+            font-size: 12px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .bank-empty {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .bank-total-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -722,6 +906,7 @@
 
         <div class="top-nav">
             <button class="nav-btn active" data-view="overviewView" onclick="showView('overviewView')">总览</button>
+            <button class="nav-btn" data-view="bankView" onclick="showView('bankView')">总题库</button>
             <button class="nav-btn" data-view="practiceView" onclick="showView('practiceView')">操作训练</button>
             <button class="nav-btn" data-view="examView" onclick="showView('examView')">选择题测试</button>
             <button class="nav-btn" data-view="cardsView" onclick="showView('cardsView')">抽认卡刷题</button>
@@ -791,6 +976,47 @@
             <button class="tool-btn" onclick="showView('examView')">开始选择题测试</button>
             <button class="tool-btn" onclick="showView('cardsView')">进入抽认卡刷题</button>
             <button class="tool-btn" onclick="showView('practiceView')">查看操作训练清单</button>
+        </div>
+        </section>
+
+        <section class="view" id="bankView">
+        <div class="section-title">
+            <strong>📚 总题库</strong>
+            <small>所有知识点一览，点击可跳转刷题</small>
+        </div>
+
+        <div class="bank-stats">
+            <div class="bank-stat-card">
+                <div class="stat-num" id="bankTotal">0</div>
+                <div class="stat-label">总题目数</div>
+            </div>
+            <div class="bank-stat-card purple">
+                <div class="stat-num" id="bankCategories">0</div>
+                <div class="stat-label">知识分类</div>
+            </div>
+            <div class="bank-stat-card blue">
+                <div class="stat-num" id="bankKnown">0</div>
+                <div class="stat-label">已掌握</div>
+            </div>
+            <div class="bank-stat-card green">
+                <div class="stat-num" id="bankNeedReview">0</div>
+                <div class="stat-label">待复习</div>
+            </div>
+        </div>
+
+        <div class="bank-total-info">
+            <span>💡 点击题目卡片可跳转到闪卡刷题</span>
+            <span>🔄 掌握状态会自动保存</span>
+        </div>
+
+        <input type="text" class="bank-search" id="bankSearch" placeholder="🔍 搜索题目或知识点..." oninput="filterBank()">
+
+        <div class="bank-filter" id="bankFilter">
+            <button class="bank-filter-btn active" onclick="setBankFilter('all')">全部</button>
+        </div>
+
+        <div id="bankContent">
+            <!-- 题库内容由JS动态渲染 -->
         </div>
         </section>
 
@@ -1257,6 +1483,201 @@
             loadProgress();
             initDailyChecklist();
             initCategories();
+            renderBankFilters();
+            renderBank();
+            updateBankStats();
+        }
+
+        // 题库功能
+        let currentBankFilter = 'all';
+        let bankSearchTerm = '';
+
+        function renderBankFilters() {
+            const filterContainer = document.getElementById('bankFilter');
+            const categories = ['全部', ...Object.keys(questionBank), 'office快捷键'];
+            filterContainer.innerHTML = categories.map(cat => {
+                const value = cat === '全部' ? 'all' : cat;
+                return `<button class="bank-filter-btn ${currentBankFilter === value ? 'active' : ''}" onclick="setBankFilter('${value}')">${cat}</button>`;
+            }).join('');
+        }
+
+        function setBankFilter(filter) {
+            currentBankFilter = filter;
+            renderBankFilters();
+            renderBank();
+        }
+
+        function filterBank() {
+            bankSearchTerm = document.getElementById('bankSearch').value.toLowerCase();
+            renderBank();
+        }
+
+        function updateBankStats() {
+            const allCards = flattenCards();
+            document.getElementById('bankTotal').textContent = allCards.length;
+            document.getElementById('bankCategories').textContent = Object.keys(questionBank).length;
+
+            let known = 0;
+            allCards.forEach(card => {
+                if (mastery[card.id] === 'known') known++;
+            });
+            document.getElementById('bankKnown').textContent = known;
+            document.getElementById('bankNeedReview').textContent = allCards.length - known;
+        }
+
+        function renderBank() {
+            const container = document.getElementById('bankContent');
+            let html = '';
+            const categories = Object.keys(questionBank);
+            let totalRendered = 0;
+
+            categories.forEach(category => {
+                // 根据筛选条件过滤
+                let cards = questionBank[category];
+                if (currentBankFilter !== 'all' && category !== currentBankFilter) return;
+
+                // 根据搜索词过滤
+                if (bankSearchTerm) {
+                    cards = cards.filter(card =>
+                        card.question.toLowerCase().includes(bankSearchTerm) ||
+                        card.answer.toLowerCase().includes(bankSearchTerm)
+                    );
+                }
+
+                if (cards.length === 0) return;
+
+                html += `
+                    <div class="bank-category">
+                        <div class="bank-category-title">
+                            <span>${category}</span>
+                            <span class="count">${cards.length}题</span>
+                        </div>
+                        <div class="bank-list">
+                `;
+
+                cards.forEach((card, index) => {
+                    const cardId = `${category}-${index}`;
+                    const level = mastery[cardId] || '';
+                    const badgeClass = level === 'known' ? 'known' : level === 'fuzzy' ? 'fuzzy' : level === 'hard' ? 'hard' : '';
+                    const badgeText = level === 'known' ? '✓已掌握' : level === 'fuzzy' ? '?模糊' : level === 'hard' ? '✗需加强' : '';
+
+                    // 截取答案预览（去掉HTML标签）
+                    const answerPreview = card.answer.replace(/<[^>]+>/g, ' ').substring(0, 60) + '...';
+
+                    html += `
+                        <div class="bank-item" onclick="jumpToCard('${category}', ${index})">
+                            <div class="bank-item-header">
+                                <span class="bank-item-title">${card.question}</span>
+                                ${badgeText ? `<span class="bank-item-badge ${badgeClass}">${badgeText}</span>` : ''}
+                            </div>
+                            <div class="bank-item-preview">答案：${answerPreview}</div>
+                            <div class="bank-item-footer">
+                                <span class="bank-item-meta">点击跳转到闪卡刷题</span>
+                                <span class="bank-item-action">去练习 →</span>
+                            </div>
+                        </div>
+                    `;
+                    totalRendered++;
+                });
+
+                html += '</div></div>';
+            });
+
+            // 添加Office快捷键
+            if (questionBank['office快捷键']) {
+                let kbs = questionBank['office快捷键'];
+                if (currentBankFilter !== 'all' && 'office快捷键' !== currentBankFilter) {
+                    kbs = [];
+                }
+                if (bankSearchTerm) {
+                    kbs = kbs.filter(kb =>
+                        kb.question.toLowerCase().includes(bankSearchTerm) ||
+                        kb.answer.toLowerCase().includes(bankSearchTerm)
+                    );
+                }
+
+                if (kbs.length > 0) {
+                    html += `
+                        <div class="bank-category">
+                            <div class="bank-category-title">
+                                <span>office快捷键</span>
+                                <span class="count">${kbs.length}题</span>
+                            </div>
+                            <div class="bank-list">
+                    `;
+
+                    kbs.forEach((kb, index) => {
+                        const kbId = `office快捷键-${index}`;
+                        const level = mastery[kbId] || '';
+                        const badgeClass = level === 'known' ? 'known' : level === 'fuzzy' ? 'fuzzy' : level === 'hard' ? 'hard' : '';
+                        const badgeText = level === 'known' ? '✓已掌握' : level === 'fuzzy' ? '?模糊' : level === 'hard' ? '✗需加强' : '';
+
+                        html += `
+                            <div class="bank-item" onclick="jumpToCard('office快捷键', ${index})">
+                                <div class="bank-item-header">
+                                    <span class="bank-item-title">${kb.question}</span>
+                                    ${badgeText ? `<span class="bank-item-badge ${badgeClass}">${badgeText}</span>` : ''}
+                                </div>
+                                <div class="bank-item-preview">${kb.answer}</div>
+                                <div class="bank-item-footer">
+                                    <span class="bank-item-meta">点击跳转到闪卡刷题</span>
+                                    <span class="bank-item-action">去练习 →</span>
+                                </div>
+                            </div>
+                        `;
+                        totalRendered++;
+                    });
+
+                    html += '</div></div>';
+                }
+            }
+
+            if (totalRendered === 0) {
+                html = `
+                    <div class="bank-empty">
+                        <div class="bank-empty-icon">🔍</div>
+                        <p>没有找到匹配的题目</p>
+                        <p style="font-size:13px;margin-top:8px;">试试其他搜索词或筛选条件</p>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            updateBankStats();
+        }
+
+        function jumpToCard(category, index) {
+            // 切换到抽认卡视图
+            showView('cardsView');
+
+            // 设置分类并跳转到指定题目
+            document.getElementById('categorySelect').value = category;
+            loadCategory(category);
+
+            // 找到对应题目索引
+            let targetIndex = index;
+            if (category !== 'office快捷键') {
+                // 找到category在flattened中的起始位置
+                const categories = Object.keys(questionBank);
+                let offset = 0;
+                for (let cat of categories) {
+                    if (cat === category) break;
+                    offset += questionBank[cat].length;
+                }
+                targetIndex = offset + index;
+            } else {
+                // office快捷键在最后
+                const categories = Object.keys(questionBank);
+                let offset = 0;
+                for (let cat of categories) {
+                    offset += questionBank[cat].length;
+                }
+                targetIndex = offset + index;
+            }
+
+            currentIndex = targetIndex;
+            isFlipped = false;
+            updateCard();
         }
 
         function buildCards(category) {
@@ -1287,6 +1708,13 @@
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.view === viewId);
             });
+
+            // 切换到题库视图时刷新统计
+            if (viewId === 'bankView') {
+                renderBankFilters();
+                renderBank();
+                updateBankStats();
+            }
         }
 
         // 初始化分类选择器
