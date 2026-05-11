@@ -137,6 +137,90 @@
             font-size: 12px;
         }
 
+        /* 备考时间计划样式 */
+        .study-plan {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .plan-phase {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .plan-phase:hover {
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .plan-phase[data-phase="1"] .phase-tag { background: #3b82f6; }
+        .plan-phase[data-phase="2"] .phase-tag { background: #f59e0b; }
+        .plan-phase[data-phase="3"] .phase-tag { background: #10b981; }
+
+        .phase-header {
+            background: #f8fafc;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .phase-tag {
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .phase-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .phase-duration {
+            font-size: 11px;
+            color: #6b7280;
+            margin-left: auto;
+        }
+
+        .phase-content {
+            padding: 12px 14px;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #374151;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .phase-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase-icon {
+            flex-shrink: 0;
+        }
+
+        .phase-goal {
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-top: 1px dashed #fcd34d;
+        }
+
         .module-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -385,6 +469,13 @@
             padding: 12px;
         }
 
+        .copy-status {
+            color: #2563eb;
+            font-size: 12px;
+            min-height: 18px;
+            margin-top: 8px;
+        }
+
         .exam-review-list {
             margin-top: 8px;
         }
@@ -437,6 +528,10 @@
             border-top: 1px dashed #fca5a5;
             font-size: 12px;
             color: #dc2626;
+        }
+
+        .review-tools {
+            margin-top: 10px;
         }
 
         .exam-review-list {
@@ -1012,6 +1107,10 @@
                 margin-bottom: 14px;
             }
 
+            .study-plan {
+                grid-template-columns: 1fr;
+            }
+
             .module-grid,
             .practice-grid,
             .quick-grid,
@@ -1269,6 +1368,94 @@
             <div class="summary-card">
                 <strong>拿分策略</strong>
                 <span>Excel优先级最高，Word注意样式目录，PPT注意母版和放映设置。</span>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <strong>📅 备考时间计划</strong>
+            <small>根据剩余时间合理分配复习精力</small>
+        </div>
+
+        <div class="study-plan">
+            <div class="plan-phase" data-phase="1">
+                <div class="phase-header">
+                    <span class="phase-tag">第一阶段</span>
+                    <span class="phase-title">基础夯实</span>
+                    <span class="phase-duration">建议 5-7 天</span>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-item">
+                        <span class="phase-icon">📚</span>
+                        <span>公共基础：算法、数据结构、栈队列、二叉树</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">💾</span>
+                        <span>公共基础：软件工程、数据库、E-R图</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">📝</span>
+                        <span>选择题速记：每天背30道高频考点</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">🏠</span>
+                        <span>Office基础：Word/Excel/PPT 基本操作熟悉</span>
+                    </div>
+                </div>
+                <div class="phase-goal">目标：选择题正确率 ≥ 60%</div>
+            </div>
+
+            <div class="plan-phase" data-phase="2">
+                <div class="phase-header">
+                    <span class="phase-tag">第二阶段</span>
+                    <span class="phase-title">专项突破</span>
+                    <span class="phase-duration">建议 7-10 天</span>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-item">
+                        <span class="phase-icon">📄</span>
+                        <span>Word：样式、目录、页眉页脚、邮件合并</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">📊</span>
+                        <span>Excel：函数、筛选、透视表、图表（重点！）</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">🎨</span>
+                        <span>PPT：母版、动画、放映设置</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">✍️</span>
+                        <span>错题整理：记录每道错题的原因和知识点</span>
+                    </div>
+                </div>
+                <div class="phase-goal">目标：操作题能独立完成 80%</div>
+            </div>
+
+            <div class="plan-phase" data-phase="3">
+                <div class="phase-header">
+                    <span class="phase-tag">第三阶段</span>
+                    <span class="phase-title">冲刺模拟</span>
+                    <span class="phase-duration">建议 5-7 天</span>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-item">
+                        <span class="phase-icon">⏱️</span>
+                        <span>套题练习：严格计时，模拟真实考试环境</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">🔄</span>
+                        <span>查漏补缺：针对薄弱环节反复练习</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">🎯</span>
+                        <span>选择题：巩固高频考点，确保不丢分</span>
+                    </div>
+                    <div class="phase-item">
+                        <span class="phase-icon">💪</span>
+                        <span>操作提速：Word控制在25分钟内，Excel 30分钟</span>
+                    </div>
+                </div>
+                <div class="phase-goal">目标：整套题得分 ≥ 60分</div>
             </div>
         </div>
 
@@ -2365,8 +2552,10 @@
                 <div class="exam-actions">
                     <button class="tool-btn" onclick="prevExamQuestion()">上一题</button>
                     <button class="tool-btn" onclick="nextExamQuestion()">下一题</button>
+                    <button class="tool-btn" onclick="copyCurrentExamQuestion()">复制该题</button>
                     <button class="tool-btn" onclick="finishChoiceExam()">交卷看结果</button>
                 </div>
+                <div class="copy-status" id="copyStatus"></div>
             `;
             updateExamMeta();
         }
@@ -2376,6 +2565,94 @@
             const item = examQuestions[examIndex];
             examAnswers[item.id] = letter;
             renderChoiceQuestion();
+        }
+
+        function buildExamQuestionText(item, selected = '', includeAnswer = false) {
+            const lines = [
+                '请帮我分析这道全国计算机二级 MS Office 选择题：',
+                '',
+                `题目：${item.question}`,
+                `A. ${item.options[0]}`,
+                `B. ${item.options[1]}`,
+                `C. ${item.options[2]}`,
+                `D. ${item.options[3]}`
+            ];
+
+            if (selected) {
+                lines.push('', `我的答案：${selected}`);
+            }
+
+            if (includeAnswer) {
+                lines.push(`正确答案：${item.answer}`);
+                if (item.explanation) {
+                    lines.push(`已有解析：${item.explanation}`);
+                }
+                lines.push('', '请用容易理解的方式解释为什么选这个答案，并指出这类题的记忆方法。');
+            } else {
+                lines.push('', '请先不要直接给答案，帮我分析每个选项该怎么判断。');
+            }
+
+            return lines.join('\n');
+        }
+
+        function setCopyStatus(message) {
+            const status = document.getElementById('copyStatus');
+            if (!status) return;
+            status.textContent = message;
+            window.clearTimeout(setCopyStatus.timer);
+            setCopyStatus.timer = window.setTimeout(() => {
+                status.textContent = '';
+            }, 2200);
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(textarea);
+            if (!ok) throw new Error('copy failed');
+        }
+
+        function copyText(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => setCopyStatus('已复制，可以粘贴给 AI 追问。'))
+                    .catch(() => {
+                        try {
+                            fallbackCopy(text);
+                            setCopyStatus('已复制，可以粘贴给 AI 追问。');
+                        } catch (error) {
+                            setCopyStatus('复制失败，请手动选中文字复制。');
+                        }
+                    });
+                return;
+            }
+
+            try {
+                fallbackCopy(text);
+                setCopyStatus('已复制，可以粘贴给 AI 追问。');
+            } catch (error) {
+                setCopyStatus('复制失败，请手动选中文字复制。');
+            }
+        }
+
+        function copyCurrentExamQuestion() {
+            if (examQuestions.length === 0) return;
+            const item = examQuestions[examIndex];
+            const selected = examAnswers[item.id] || '';
+            copyText(buildExamQuestionText(item, selected, false));
+        }
+
+        function copyReviewQuestion(index) {
+            const item = examQuestions[index];
+            if (!item) return;
+            const selected = examAnswers[item.id] || '未答';
+            copyText(buildExamQuestionText(item, selected, true));
         }
 
         function prevExamQuestion() {
@@ -2430,6 +2707,9 @@
                             <span class="right-ans">正确答案：${item.answer}</span>
                         </div>
                         ${!isCorrect && item.explanation ? `<div class="review-exp">📝 ${item.explanation}</div>` : ''}
+                        <div class="review-tools">
+                            <button class="tool-btn" onclick="copyReviewQuestion(${index})">复制${isCorrect ? '该题' : '错题'}</button>
+                        </div>
                     </div>
                 `;
             });
@@ -2447,6 +2727,7 @@
                         <button class="tool-btn" onclick="startChoiceExam(20)">再做20题</button>
                         <button class="tool-btn" onclick="startWeakReview()">复习薄弱卡</button>
                     </div>
+                    <div class="copy-status" id="copyStatus"></div>
                     <div class="exam-review-list">${reviewHtml || '本次没有错题。'}</div>
                 </div>
             `;
