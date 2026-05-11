@@ -1165,6 +1165,10 @@ h1 {
     margin-bottom: 24px;
 }
 
+.bank-category.collapsed .bank-list {
+    display: none;
+}
+
 .bank-category-title {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -1174,8 +1178,31 @@ h1 {
     padding: 12px 16px;
     margin-bottom: 12px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.bank-category-title:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.bank-category-chevron {
+    flex-shrink: 0;
+    font-size: 10px;
+    opacity: 0.85;
+    transition: transform 0.2s ease;
+}
+
+.bank-category.collapsed .bank-category-chevron {
+    transform: rotate(-90deg);
+}
+
+.bank-category-name {
+    flex: 1;
+    min-width: 0;
 }
 
 .bank-category-title .count {
@@ -1183,6 +1210,8 @@ h1 {
     border-radius: 12px;
     font-size: 12px;
     padding: 2px 10px;
+    margin-left: auto;
+    flex-shrink: 0;
 }
 
 .bank-list {
@@ -2022,7 +2051,7 @@ h1 {
         <section class="view" id="bankView">
         <div class="section-title">
             <strong>📚 总题库</strong>
-            <small>所有知识点一览，点击可跳转刷题</small>
+            <small>所有知识点一览；点题目进闪卡；点紫色分类标题可展开/折叠</small>
         </div>
 
         <div class="bank-stats">
@@ -2517,12 +2546,38 @@ h1 {
         let examLimitSeconds = 0;
 
         // 初始化
+        function initBankCategoryToggle() {
+            const el = document.getElementById('bankContent');
+            if (!el || el.dataset.bankToggleBound) return;
+            el.dataset.bankToggleBound = '1';
+            el.addEventListener('click', (e) => {
+                const title = e.target.closest('.bank-category-title');
+                if (!title || !el.contains(title)) return;
+                e.preventDefault();
+                const block = title.closest('.bank-category');
+                if (!block) return;
+                block.classList.toggle('collapsed');
+                title.setAttribute('aria-expanded', block.classList.contains('collapsed') ? 'false' : 'true');
+            });
+            el.addEventListener('keydown', (e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                const title = e.target.closest('.bank-category-title');
+                if (!title || !el.contains(title)) return;
+                e.preventDefault();
+                const block = title.closest('.bank-category');
+                if (!block) return;
+                block.classList.toggle('collapsed');
+                title.setAttribute('aria-expanded', block.classList.contains('collapsed') ? 'false' : 'true');
+            });
+        }
+
         function init() {
             document.getElementById('totalQuestions').textContent = flattenCards().length;
             document.getElementById('totalCategories').textContent = Object.keys(questionBank).length + 1;
             loadProgress();
             initDailyChecklist();
             initCategories();
+            initBankCategoryToggle();
             renderBankFilters();
             renderBank();
             updateBankStats();
@@ -2593,6 +2648,7 @@ h1 {
             let html = '';
             const categories = Object.keys(questionBank);
             let totalRendered = 0;
+            const collapseByDefault = currentBankFilter === 'all' && !bankSearchTerm;
 
             categories.forEach(category => {
                 // 根据筛选条件过滤
@@ -2610,9 +2666,10 @@ h1 {
                 if (cards.length === 0) return;
 
                 html += `
-                    <div class="bank-category">
-                        <div class="bank-category-title">
-                            <span>${category}</span>
+                    <div class="bank-category${collapseByDefault ? ' collapsed' : ''}">
+                        <div class="bank-category-title" role="button" tabindex="0" aria-expanded="${collapseByDefault ? 'false' : 'true'}">
+                            <span class="bank-category-chevron" aria-hidden="true">▼</span>
+                            <span class="bank-category-name">${category}</span>
                             <span class="count">${cards.length}题</span>
                         </div>
                         <div class="bank-list">
@@ -2661,9 +2718,10 @@ h1 {
 
                 if (kbs.length > 0) {
                     html += `
-                        <div class="bank-category">
-                            <div class="bank-category-title">
-                                <span>office快捷键</span>
+                        <div class="bank-category${collapseByDefault ? ' collapsed' : ''}">
+                            <div class="bank-category-title" role="button" tabindex="0" aria-expanded="${collapseByDefault ? 'false' : 'true'}">
+                                <span class="bank-category-chevron" aria-hidden="true">▼</span>
+                                <span class="bank-category-name">office快捷键</span>
                                 <span class="count">${kbs.length}题</span>
                             </div>
                             <div class="bank-list">
