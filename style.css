@@ -447,14 +447,50 @@ h1 {
     margin-top: 14px;
 }
 
-.data-reset-bar {
-    margin-top: 14px;
-    padding-top: 14px;
+.data-reset-zone {
+    margin-top: 20px;
+    padding-top: 16px;
     border-top: 1px dashed #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+}
+
+.data-reset-summary {
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    color: #92400e;
+    font-weight: 600;
+    list-style: none;
+}
+
+.data-reset-summary::-webkit-details-marker {
+    display: none;
+}
+
+.data-reset-panel {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+}
+
+.data-reset-warn {
+    font-size: 13px;
+    color: #78350f;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.data-reset-steps {
+    font-size: 12px;
+    color: #92400e;
+    margin: 0 0 14px;
+    padding-left: 1.2rem;
+    line-height: 1.65;
+}
+
+.data-reset-zone .tool-btn-danger-outline {
+    margin-top: 4px;
 }
 
 .tool-btn-danger-outline {
@@ -467,13 +503,6 @@ h1 {
     background: #fef2f2;
     border-color: #ef4444;
     color: #991b1b;
-}
-
-.data-reset-note {
-    color: #6b7280;
-    font-size: 12px;
-    line-height: 1.5;
-    max-width: 520px;
 }
 
 .mobile-start {

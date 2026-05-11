@@ -456,14 +456,50 @@ h1 {
     margin-top: 14px;
 }
 
-.data-reset-bar {
-    margin-top: 14px;
-    padding-top: 14px;
+.data-reset-zone {
+    margin-top: 20px;
+    padding-top: 16px;
     border-top: 1px dashed #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+}
+
+.data-reset-summary {
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    color: #92400e;
+    font-weight: 600;
+    list-style: none;
+}
+
+.data-reset-summary::-webkit-details-marker {
+    display: none;
+}
+
+.data-reset-panel {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+}
+
+.data-reset-warn {
+    font-size: 13px;
+    color: #78350f;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.data-reset-steps {
+    font-size: 12px;
+    color: #92400e;
+    margin: 0 0 14px;
+    padding-left: 1.2rem;
+    line-height: 1.65;
+}
+
+.data-reset-zone .tool-btn-danger-outline {
+    margin-top: 4px;
 }
 
 .tool-btn-danger-outline {
@@ -476,13 +512,6 @@ h1 {
     background: #fef2f2;
     border-color: #ef4444;
     color: #991b1b;
-}
-
-.data-reset-note {
-    color: #6b7280;
-    font-size: 12px;
-    line-height: 1.5;
-    max-width: 520px;
 }
 
 .mobile-start {
@@ -2132,10 +2161,17 @@ h1 {
             <button class="tool-btn" onclick="showView('practiceView')">查看操作训练清单</button>
         </div>
 
-        <div class="data-reset-bar">
-            <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">清空本地复习进度</button>
-            <small class="data-reset-note">将清除本机保存的闪卡标记、掌握度、今日打卡与进行中的选择题测试，且不可恢复。</small>
-        </div>
+        <details class="data-reset-zone">
+            <summary class="data-reset-summary">⚠️ 高级 · 清空本机学习数据（危险，默认收起）</summary>
+            <div class="data-reset-panel">
+                <p class="data-reset-warn"><strong>警告：</strong>将永久删除当前浏览器内保存的闪卡标记、掌握度（不会/模糊/已会）、今日打卡、以及进行中的选择题测试。操作不可撤销；网站上的题目内容不会删除。</p>
+                <ol class="data-reset-steps">
+                    <li>点击下方按钮后，将依次出现 <strong>两次确认窗口</strong>，并需输入口令 <strong>确认清空</strong>（四字，无空格）。</li>
+                    <li>进度仅保存在本机；换设备或无痕模式本就没有旧数据，一般不必特意清空。</li>
+                </ol>
+                <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">我了解风险，继续清空…</button>
+            </div>
+        </details>
         </section>
 
         <section class="view" id="bankView">
@@ -2345,7 +2381,6 @@ h1 {
         <div class="action-buttons">
             <button class="btn-action" onclick="shuffleCards()">🔀 随机</button>
             <button class="btn-action" onclick="showReviewMode()">📝 复习</button>
-            <button class="btn-action" onclick="resetProgress()">清空复习进度</button>
         </div>
 
         <div class="review-mode" id="reviewMode" style="display: none;">
@@ -2364,8 +2399,20 @@ h1 {
             </div>
         </div>
 
+        <details class="data-reset-zone">
+            <summary class="data-reset-summary">⚠️ 高级 · 清空本机学习数据（危险，默认收起）</summary>
+            <div class="data-reset-panel">
+                <p class="data-reset-warn"><strong>警告：</strong>将永久删除当前浏览器内保存的闪卡标记、掌握度（不会/模糊/已会）、今日打卡、以及进行中的选择题测试。操作不可撤销；网站上的题目内容不会删除。</p>
+                <ol class="data-reset-steps">
+                    <li>点击下方按钮后，将依次出现 <strong>两次确认窗口</strong>，并需输入口令 <strong>确认清空</strong>（四字，无空格）。</li>
+                    <li>进度仅保存在本机；换设备或无痕模式本就没有旧数据，一般不必特意清空。</li>
+                </ol>
+                <button type="button" class="tool-btn tool-btn-danger-outline" onclick="resetProgress()">我了解风险，继续清空…</button>
+            </div>
+        </details>
+
         <div class="tips">
-            💡 <strong>提示：</strong>标记、掌握度和今日打卡保存在本机。可在本页底部「清空复习进度」或总览页同名按钮清除。
+            💡 <strong>提示：</strong>标记与掌握度保存在本机。若要清空，请展开本页或<strong>总览</strong>底部的「高级 · 清空本机学习数据」。
         </div>
         </section>
     </div>
@@ -3446,11 +3493,7 @@ h1 {
             }
         }
 
-        // 重置进度
-        function resetProgress() {
-            if (!confirm('确定清空本地复习进度？\n\n将清除：闪卡标记、掌握度分级、今日打卡、进行中的选择题测试。\n此操作不可恢复。')) {
-                return;
-            }
+        function performProgressReset() {
             markedCards = new Set();
             mastery = {};
             dailyDone = {};
@@ -3466,6 +3509,35 @@ h1 {
             renderBank();
             updateBankStats();
             saveProgress();
+        }
+
+        // 清空进度：三步确认（含口令），防误触
+        function resetProgress() {
+            const msg1 = '【第 1 步 / 共 3 步】清空复习进度\n\n' +
+                '将删除：闪卡标记、掌握度分级、今日打卡、进行中的选择题测试。\n' +
+                '数据仅存于本浏览器，清空后无法恢复。\n\n' +
+                '是否继续？';
+            if (!confirm(msg1)) return;
+
+            const phrase = window.prompt(
+                '【第 2 步 / 共 3 步】口令验证\n\n' +
+                '请完整输入下面四个字（中间无空格）：\n确认清空\n\n' +
+                '点「取消」或输错均会中止。'
+            );
+            if (phrase === null) {
+                alert('已取消。未做任何修改。');
+                return;
+            }
+            if (phrase.trim() !== '确认清空') {
+                alert('口令不正确，已取消。未做任何修改。');
+                return;
+            }
+
+            if (!confirm('【第 3 步 / 共 3 步】最后确认\n\n确定要立即清空全部本地复习数据？\n点「确定」后将立刻执行。')) {
+                return;
+            }
+
+            performProgressReset();
         }
 
         // 显示复习模式
