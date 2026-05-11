@@ -2,7 +2,7 @@
   "framework": null,
   "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": "public",
+  "outputDirectory": "build",
   "routes": [{ "handle": "filesystem" }],
   "headers": [
     {

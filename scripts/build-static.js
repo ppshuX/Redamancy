@@ -1,11 +1,12 @@
 /**
- * Vercel「Other」预设需要产出 public/。将根目录静态资源复制到 public/
+ * 静态站点构建：将根目录可部署文件写入 build/（Vercel、帽子云等以该目录为站点根）。
+ * 可通过环境变量 STATIC_OUTPUT_DIR 覆盖输出目录名。
  */
 const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const outDir = path.join(root, 'public');
+const outDir = path.join(root, process.env.STATIC_OUTPUT_DIR || 'build');
 
 function rmrf(dir) {
     if (fs.existsSync(dir)) {
@@ -18,7 +19,7 @@ function copyRecursive(src, dest) {
     if (st.isDirectory()) {
         fs.mkdirSync(dest, { recursive: true });
         for (const name of fs.readdirSync(src)) {
-            if (name === 'public' || name === 'node_modules' || name === '.git') continue;
+            if (name === 'public' || name === 'build' || name === 'node_modules' || name === '.git') continue;
             copyRecursive(path.join(src, name), path.join(dest, name));
         }
     } else {
