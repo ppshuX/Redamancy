@@ -391,7 +391,58 @@
 
         .exam-review-item {
             border-top: 1px solid #e5e7eb;
-            padding: 8px 0;
+            padding: 12px 0;
+        }
+
+        .exam-review-item.review-correct {
+            background: #f0fdf4;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+        }
+
+        .exam-review-item.review-wrong {
+            background: #fef2f2;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .review-q {
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .review-a {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+
+        .your-ans {
+            color: #6b7280;
+        }
+
+        .right-ans {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .review-exp {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #fca5a5;
+            font-size: 12px;
+            color: #dc2626;
+        }
+
+        .exam-review-list {
+            margin-top: 16px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .daily-checklist strong {
@@ -2078,14 +2129,20 @@
                     mastery[item.id] = 'known';
                 } else {
                     mastery[item.id] = 'hard';
-                    reviewHtml += `
-                        <div class="exam-review-item">
-                            <strong>${index + 1}. ${item.question}</strong><br>
-                            你的答案：${selected}；正确答案：${item.answer}<br>
-                            ${item.explanation}
-                        </div>
-                    `;
                 }
+                // 显示所有题目的答题情况
+                const statusIcon = isCorrect ? '✅' : '❌';
+                const statusClass = isCorrect ? 'review-correct' : 'review-wrong';
+                reviewHtml += `
+                    <div class="exam-review-item ${statusClass}">
+                        <div class="review-q">${statusIcon} <strong>${index + 1}. ${item.question}</strong></div>
+                        <div class="review-a">
+                            <span class="your-ans">你的答案：${selected}</span>
+                            <span class="right-ans">正确答案：${item.answer}</span>
+                        </div>
+                        ${!isCorrect && item.explanation ? `<div class="review-exp">📝 ${item.explanation}</div>` : ''}
+                    </div>
+                `;
             });
 
             const score = Math.round((correct / examQuestions.length) * 100);
