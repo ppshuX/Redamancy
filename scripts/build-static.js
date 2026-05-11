@@ -43,10 +43,16 @@ if (fs.existsSync(handbook)) {
     copyRecursive(handbook, path.join(outDir, 'handbook'));
 }
 
-// 页面内链接 historically 与 index 同级（备考计划.md 等），从 handbook/ 拷到 public/ 根目录
-for (const name of ['备考计划.md', '知识库大全.md', '二级MS Office超全题库.md']) {
-    const src = path.join(handbook, name);
-    if (fs.existsSync(src)) {
-        fs.copyFileSync(src, path.join(outDir, name));
-    }
+// 根发布：纯 ASCII 文件名，避免 CDN/浏览器对中文路径处理异常导致「点 A 打开 B」
+// 同时保留中文文件名副本，兼容旧书签与手工输入 URL
+const handbookMdToPublic = [
+    ['备考计划.md', 'prep-plan.md'],
+    ['知识库大全.md', 'knowledge-base.md'],
+    ['二级MS Office超全题库.md', 'full-question-bank.md'],
+];
+for (const [sourceName, destAscii] of handbookMdToPublic) {
+    const src = path.join(handbook, sourceName);
+    if (!fs.existsSync(src)) continue;
+    fs.copyFileSync(src, path.join(outDir, destAscii));
+    fs.copyFileSync(src, path.join(outDir, sourceName));
 }

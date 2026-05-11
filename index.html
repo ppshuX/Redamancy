@@ -426,19 +426,28 @@ h1 {
 
 .resource-links {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
     margin-bottom: 16px;
 }
 
 .resource-links a {
     border: 1px solid #d1d5db;
     border-radius: 8px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     color: #374151;
     text-decoration: none;
     font-size: 13px;
     background: #fff;
+    display: block;
+    text-align: center;
+}
+
+.resource-links a:first-child {
+    border-width: 2px;
+    border-color: #667eea;
+    font-weight: 600;
 }
 
 .resource-links a:hover {
@@ -2205,9 +2214,9 @@ h1 {
         </div>
 
         <div class="resource-links">
-            <a href="备考计划.md">查看备考计划</a>
-            <a href="知识库大全.md">打开知识库大全</a>
-            <a href="二级MS%20Office超全题库.md">打开超全题库</a>
+            <a href="prep-plan.md">备考计划 · 时间表与阶段安排</a>
+            <a href="knowledge-base.md">知识库大全 · 考点 Q&amp;A</a>
+            <a href="full-question-bank.md">超全题库（Markdown）</a>
         </div>
         </section>
 
