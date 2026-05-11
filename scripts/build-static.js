@@ -42,3 +42,11 @@ const handbook = path.join(root, 'handbook');
 if (fs.existsSync(handbook)) {
     copyRecursive(handbook, path.join(outDir, 'handbook'));
 }
+
+// 页面内链接 historically 与 index 同级（备考计划.md 等），从 handbook/ 拷到 public/ 根目录
+for (const name of ['备考计划.md', '知识库大全.md', '二级MS Office超全题库.md']) {
+    const src = path.join(handbook, name);
+    if (fs.existsSync(src)) {
+        fs.copyFileSync(src, path.join(outDir, name));
+    }
+}
