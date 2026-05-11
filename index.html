@@ -81,6 +81,27 @@
             display: block;
         }
 
+        #cardsView.view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cardsView .section-title { order: 1; }
+        #cardsView .mode-pill { order: 2; }
+        #cardsView .category-selector { order: 3; }
+        #cardsView .flashcard { order: 4; }
+        #cardsView .progress-bar { order: 5; }
+        #cardsView .progress-text { order: 6; }
+        #cardsView .controls { order: 7; }
+        #cardsView .mastery-controls { order: 8; }
+        #cardsView .study-tools { order: 9; }
+        #cardsView .stats { order: 10; }
+        #cardsView .action-buttons { order: 11; }
+        #cardsView .review-mode { order: 12; }
+        #cardsView .daily-checklist { order: 13; }
+        #cardsView .tips { order: 14; }
+        #cardsView .total-stats { order: 15; }
+
         .hero-summary {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -909,6 +930,11 @@
             background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         }
 
+        #cardsView .flashcard {
+            box-shadow: 0 16px 36px rgba(102, 126, 234, 0.22);
+            margin-bottom: 12px;
+        }
+
         .card-type {
             position: absolute;
             top: 15px;
@@ -1607,6 +1633,119 @@
                 flex-direction: column;
                 gap: 6px;
             }
+
+            #cardsView.view.active {
+                display: flex;
+                min-height: calc(100vh - 96px);
+            }
+
+            #cardsView .section-title {
+                margin: 4px 0 6px;
+                order: 1;
+            }
+
+            #cardsView .section-title strong {
+                font-size: 18px;
+            }
+
+            #cardsView .section-title small,
+            #cardsView .total-stats,
+            #cardsView .stats,
+            #cardsView .daily-checklist,
+            #cardsView .tips,
+            #cardsView .progress-text {
+                display: none;
+            }
+
+            #cardsView .mode-pill {
+                background: #f8fafc;
+                border: 1px solid #e5e7eb;
+                border-radius: 999px;
+                color: #4b5563;
+                font-size: 12px;
+                margin: 0 0 10px;
+                order: 2;
+                overflow: hidden;
+                padding: 7px 10px;
+                text-align: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            #cardsView .category-selector {
+                order: 7;
+                margin: 10px -14px 10px;
+            }
+
+            #cardsView .flashcard {
+                border-radius: 14px;
+                box-shadow: 0 18px 38px rgba(102, 126, 234, 0.28);
+                font-size: 17px;
+                line-height: 1.65;
+                margin-bottom: 10px;
+                min-height: 310px;
+                order: 3;
+                padding: 52px 20px 32px;
+            }
+
+            #cardsView .progress-bar {
+                height: 6px;
+                margin: 0 0 10px;
+                order: 4;
+            }
+
+            #cardsView .controls {
+                display: grid;
+                gap: 8px;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 8px;
+                order: 5;
+            }
+
+            #cardsView .controls .btn-mark {
+                grid-column: 1 / -1;
+                min-height: 40px;
+            }
+
+            #cardsView .mastery-controls {
+                order: 6;
+            }
+
+            #cardsView .mastery-btn {
+                min-height: 40px;
+            }
+
+            #cardsView .study-tools {
+                background: #f8fafc;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                margin-top: 2px;
+                order: 8;
+                padding: 10px;
+            }
+
+            #cardsView .search-input {
+                min-height: 42px;
+            }
+
+            #cardsView .quick-actions {
+                margin-top: 8px;
+            }
+
+            #cardsView .action-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                margin-top: 8px;
+                order: 9;
+            }
+
+            #cardsView .action-buttons .btn-action:last-child {
+                grid-column: auto;
+            }
+
+            #cardsView .review-mode {
+                order: 10;
+            }
         }
 
         @media (max-width: 380px) {
@@ -1697,106 +1836,121 @@
         </div>
 
         <div class="section-title">
-            <strong>📅 备考倒计时</strong>
-            <small>距离 2026年9月 计算机二级考试</small>
+            <strong>📅 备考冲刺</strong>
+            <small>2026年9月计算机二级 · 倒计时</small>
         </div>
 
-        <div class="countdown-banner">
-            <div class="countdown-item">
-                <span class="countdown-num" id="countdownDays">120</span>
-                <span class="countdown-label">天</span>
-            </div>
-            <div class="countdown-divider"></div>
-            <div class="countdown-info">
-                <div class="countdown-tip">💡 从现在开始，按计划复习，一次过级！</div>
-                <div class="countdown-progress">
-                    <div class="progress-track">
-                        <div class="progress-fill" id="studyProgress" style="width: 0%"></div>
-                    </div>
-                    <span class="progress-text">已复习 <span id="progressPercent">0</span>%</span>
+        <!-- 倒计时卡片 -->
+        <div class="countdown-card">
+            <div class="countdown-bg"></div>
+            <div class="countdown-body">
+                <div class="countdown-main">
+                    <div class="countdown-number" id="countdownDays">113</div>
+                    <div class="countdown-unit">天</div>
                 </div>
-            </div>
-        </div>
-
-        <div class="timeline-container">
-            <div class="timeline">
-                <div class="timeline-item current">
-                    <div class="timeline-marker">5月</div>
-                    <div class="timeline-content">
-                        <h4>📚 第一阶段：基础入门</h4>
-                        <p>熟悉Office三件套基本操作，攻克公共基础选择题</p>
-                        <div class="timeline-tags">
-                            <span class="tag">选择题速记</span>
-                            <span class="tag">Office基础</span>
+                <div class="countdown-meta">
+                    <div class="countdown-date">距离 2026年9月 考试</div>
+                    <div class="countdown-bar-wrap">
+                        <div class="countdown-bar">
+                            <div class="countdown-bar-fill" id="studyProgress"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">6月</div>
-                    <div class="timeline-content">
-                        <h4>🔨 第二阶段：技能强化</h4>
-                        <p>Word文档排版、Excel函数图表、PPT母版动画专项训练</p>
-                        <div class="timeline-tags">
-                            <span class="tag">Word进阶</span>
-                            <span class="tag">Excel函数</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">7月</div>
-                    <div class="timeline-content">
-                        <h4>⚡ 第三阶段：综合提升</h4>
-                        <p>套题练习，错题整理，查漏补缺</p>
-                        <div class="timeline-tags">
-                            <span class="tag">套题训练</span>
-                            <span class="tag">提速练习</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">8月</div>
-                    <div class="timeline-content">
-                        <h4>🎯 第四阶段：冲刺模拟</h4>
-                        <p>全真模拟考试，复盘高频考点，冲刺60分</p>
-                        <div class="timeline-tags">
-                            <span class="tag">模拟考试</span>
-                            <span class="tag">重点回顾</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item exam">
-                    <div class="timeline-marker">9月</div>
-                    <div class="timeline-content">
-                        <h4>🏆 考试月</h4>
-                        <p>调整心态，从容应考，一次过级！</p>
-                        <div class="timeline-tags">
-                            <span class="tag exam-tag">💪 加油！</span>
-                        </div>
+                        <span class="countdown-bar-text">复习进度 <span id="progressPercent">0</span>%</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="daily-schedule">
-            <h4>📋 每日学习计划</h4>
-            <div class="schedule-grid">
-                <div class="schedule-item">
-                    <span class="schedule-time">早上</span>
-                    <span class="schedule-task">选择题速记 30分钟</span>
-                </div>
-                <div class="schedule-item">
-                    <span class="schedule-time">上午</span>
-                    <span class="schedule-task">操作题练习 60分钟</span>
-                </div>
-                <div class="schedule-item">
-                    <span class="schedule-time">下午</span>
-                    <span class="schedule-task">错题复习 + 套题 90分钟</span>
-                </div>
-                <div class="schedule-item">
-                    <span class="schedule-time">晚上</span>
-                    <span class="schedule-task">知识点回顾 30分钟</span>
+        <!-- 月份时间轴 -->
+        <div class="plan-cards">
+            <div class="plan-card current">
+                <div class="plan-month">5月</div>
+                <div class="plan-badge">进行中</div>
+                <div class="plan-name">基础入门</div>
+                <div class="plan-desc">Office基础 + 选择题速记</div>
+                <div class="plan-tags">
+                    <span>📝 理论</span>
+                    <span>🖱️ 操作</span>
                 </div>
             </div>
+            <div class="plan-card">
+                <div class="plan-month">6月</div>
+                <div class="plan-badge">待开始</div>
+                <div class="plan-name">技能强化</div>
+                <div class="plan-desc">Word排版 + Excel函数</div>
+                <div class="plan-tags">
+                    <span>📄 Word</span>
+                    <span>📊 Excel</span>
+                </div>
+            </div>
+            <div class="plan-card">
+                <div class="plan-month">7月</div>
+                <div class="plan-badge">待开始</div>
+                <div class="plan-name">综合提升</div>
+                <div class="plan-desc">套题训练 + 提速练习</div>
+                <div class="plan-tags">
+                    <span>⏱️ 计时</span>
+                    <span>🔁 复盘</span>
+                </div>
+            </div>
+            <div class="plan-card">
+                <div class="plan-month">8月</div>
+                <div class="plan-badge">待开始</div>
+                <div class="plan-name">冲刺模拟</div>
+                <div class="plan-desc">全真模拟 + 高频考点</div>
+                <div class="plan-tags">
+                    <span>🎯 冲刺</span>
+                    <span>📌 重点</span>
+                </div>
+            </div>
+            <div class="plan-card exam">
+                <div class="plan-month">9月</div>
+                <div class="plan-badge">🏆 考试</div>
+                <div class="plan-name">从容应考</div>
+                <div class="plan-desc">调整心态，一次过级</div>
+                <div class="plan-tags">
+                    <span>💪 加油</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 每日计划表 -->
+        <div class="daily-card">
+            <div class="daily-title">📋 每日学习计划</div>
+            <div class="daily-table">
+                <div class="daily-row">
+                    <div class="daily-time">
+                        <span class="time-icon">🌅</span>
+                        <span>早上</span>
+                    </div>
+                    <div class="daily-task">选择题速记</div>
+                    <div class="daily-dur">30分钟</div>
+                </div>
+                <div class="daily-row">
+                    <div class="daily-time">
+                        <span class="time-icon">☀️</span>
+                        <span>上午</span>
+                    </div>
+                    <div class="daily-task">操作题练习</div>
+                    <div class="daily-dur">60分钟</div>
+                </div>
+                <div class="daily-row">
+                    <div class="daily-time">
+                        <span class="time-icon">🌤️</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="daily-task">错题 + 套题</div>
+                    <div class="daily-dur">90分钟</div>
+                </div>
+                <div class="daily-row">
+                    <div class="daily-time">
+                        <span class="time-icon">🌙</span>
+                        <span>晚上</span>
+                    </div>
+                    <div class="daily-task">知识点回顾</div>
+                    <div class="daily-dur">30分钟</div>
+                </div>
+            </div>
+            <div class="daily-total">⏱️ 每日合计：约 3.5 小时</div>
         </div>
 
         <div class="section-title">
