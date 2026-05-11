@@ -137,88 +137,221 @@
             font-size: 12px;
         }
 
-        /* 备考时间计划样式 */
-        .study-plan {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        .plan-phase {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: box-shadow 0.2s;
-        }
-
-        .plan-phase:hover {
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-        }
-
-        .plan-phase[data-phase="1"] .phase-tag { background: #3b82f6; }
-        .plan-phase[data-phase="2"] .phase-tag { background: #f59e0b; }
-        .plan-phase[data-phase="3"] .phase-tag { background: #10b981; }
-
-        .phase-header {
-            background: #f8fafc;
-            padding: 12px 14px;
+        /* 备考倒计时样式 */
+        .countdown-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 24px 30px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .phase-tag {
+            gap: 24px;
+            margin-bottom: 24px;
             color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 3px 8px;
+        }
+
+        .countdown-item {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .countdown-num {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .countdown-divider {
+            width: 2px;
+            height: 50px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .countdown-info {
+            flex: 1;
+        }
+
+        .countdown-tip {
+            font-size: 15px;
+            margin-bottom: 12px;
+            opacity: 0.95;
+        }
+
+        .countdown-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.25);
             border-radius: 4px;
+            overflow: hidden;
         }
 
-        .phase-title {
-            font-weight: 600;
-            font-size: 14px;
+        .progress-text {
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* 时间轴样式 */
+        .timeline-container {
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 0;
+            min-width: 700px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            padding-top: 50px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border: 4px solid #e5e7eb;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #6b7280;
+            z-index: 1;
+        }
+
+        .timeline-item.current .timeline-marker {
+            border-color: #667eea;
+            color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-item.exam .timeline-marker {
+            border-color: #10b981;
+            color: #10b981;
+            background: #dcfce7;
+        }
+
+        .timeline-content {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 0 6px;
+        }
+
+        .timeline-item.current .timeline-content {
+            border-color: #667eea;
+            background: #f5f3ff;
+        }
+
+        .timeline-item.exam .timeline-content {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .timeline-content h4 {
+            font-size: 13px;
             color: #111827;
+            margin-bottom: 6px;
         }
 
-        .phase-duration {
+        .timeline-content p {
             font-size: 11px;
             color: #6b7280;
-            margin-left: auto;
-        }
-
-        .phase-content {
-            padding: 12px 14px;
-        }
-
-        .phase-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 12px;
-            color: #374151;
             line-height: 1.5;
             margin-bottom: 8px;
         }
 
-        .phase-item:last-child {
-            margin-bottom: 0;
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .phase-icon {
-            flex-shrink: 0;
+        .tag {
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
         }
 
-        .phase-goal {
-            background: #fef3c7;
-            color: #92400e;
-            font-size: 11px;
+        .tag.exam-tag {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* 每日计划样式 */
+        .daily-schedule {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .daily-schedule h4 {
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 14px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .schedule-item {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .schedule-time {
+            display: block;
+            font-size: 12px;
             font-weight: 600;
-            padding: 8px 14px;
-            border-top: 1px dashed #fcd34d;
+            color: #667eea;
+            margin-bottom: 6px;
+        }
+
+        .schedule-task {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.4;
         }
 
         .module-grid {
@@ -295,6 +428,105 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 10px;
             margin-top: 14px;
+        }
+
+        .mobile-start {
+            display: none;
+        }
+
+        .start-card {
+            background: linear-gradient(135deg, #667eea 0%, #5b7cfa 100%);
+            border-radius: 14px;
+            color: #fff;
+            padding: 18px;
+            box-shadow: 0 14px 30px rgba(102, 126, 234, 0.25);
+        }
+
+        .start-kicker {
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .start-card h2 {
+            font-size: 22px;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .start-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            opacity: 0.95;
+        }
+
+        .start-primary {
+            background: #fff;
+            border: 0;
+            border-radius: 10px;
+            color: #4f46e5;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 800;
+            min-height: 46px;
+            width: 100%;
+        }
+
+        .start-path {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .start-step {
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            color: #111827;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 10px;
+            padding: 12px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .step-num {
+            align-items: center;
+            background: #eef2ff;
+            border-radius: 999px;
+            color: #4f46e5;
+            display: flex;
+            font-weight: 800;
+            height: 34px;
+            justify-content: center;
+            width: 34px;
+        }
+
+        .step-title {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .step-desc {
+            color: #6b7280;
+            display: block;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .start-note {
+            color: #6b7280;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 10px;
+            text-align: center;
         }
 
         .study-tools {
@@ -1067,8 +1299,12 @@
             .subtitle {
                 font-size: 12px;
                 line-height: 1.45;
-                margin-bottom: 12px;
+                margin-bottom: 8px;
                 padding: 0 8px;
+            }
+
+            .subtitle {
+                display: none;
             }
 
             .top-nav {
@@ -1101,6 +1337,21 @@
                 white-space: nowrap;
             }
 
+            .nav-btn[data-view="bankView"] {
+                display: none;
+            }
+
+            .mobile-start {
+                display: block;
+            }
+
+            #overviewView > .hero-summary,
+            #overviewView > .section-title,
+            #overviewView > .module-grid,
+            #overviewView > .overview-actions {
+                display: none;
+            }
+
             .hero-summary {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 8px;
@@ -1109,6 +1360,45 @@
 
             .study-plan {
                 grid-template-columns: 1fr;
+            }
+
+            .countdown-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .countdown-divider {
+                width: 80px;
+                height: 2px;
+            }
+
+            .timeline {
+                flex-direction: column;
+                gap: 20px;
+                min-width: auto;
+            }
+
+            .timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 22px;
+                width: 4px;
+                height: auto;
+            }
+
+            .timeline-item {
+                padding-top: 0;
+                padding-left: 70px;
+            }
+
+            .timeline-marker {
+                left: 0;
+                transform: none;
+            }
+
+            .schedule-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .module-grid,
@@ -1352,6 +1642,41 @@
         </div>
 
         <section class="view active" id="overviewView">
+        <div class="mobile-start">
+            <div class="start-card">
+                <span class="start-kicker">不知道从哪里开始？</span>
+                <h2>先做 10 题快测</h2>
+                <p>用 10 分钟判断选择题基础。答错的题会自动进入薄弱复习。</p>
+                <button class="start-primary" onclick="startChoiceExam(10)">开始今日复习</button>
+            </div>
+
+            <div class="start-path">
+                <button class="start-step" onclick="startChoiceExam(10)">
+                    <span class="step-num">1</span>
+                    <span>
+                        <span class="step-title">选择题快测</span>
+                        <span class="step-desc">先测 10 题，知道今天薄弱点</span>
+                    </span>
+                </button>
+                <button class="start-step" onclick="selectCategory('🧮 Excel操作训练')">
+                    <span class="step-num">2</span>
+                    <span>
+                        <span class="step-title">Excel 操作流程</span>
+                        <span class="step-desc">按步骤练最容易拿分的部分</span>
+                    </span>
+                </button>
+                <button class="start-step" onclick="startWeakReview()">
+                    <span class="step-num">3</span>
+                    <span>
+                        <span class="step-title">复习薄弱卡</span>
+                        <span class="step-desc">只看不会和模糊的题</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="start-note">手机端默认只保留今日路径。想看全部内容，再切换上方模块。</div>
+        </div>
+
         <div class="hero-summary">
             <div class="summary-card">
                 <strong>考试结构</strong>
@@ -1372,90 +1697,105 @@
         </div>
 
         <div class="section-title">
-            <strong>📅 备考时间计划</strong>
-            <small>根据剩余时间合理分配复习精力</small>
+            <strong>📅 备考倒计时</strong>
+            <small>距离 2026年9月 计算机二级考试</small>
         </div>
 
-        <div class="study-plan">
-            <div class="plan-phase" data-phase="1">
-                <div class="phase-header">
-                    <span class="phase-tag">第一阶段</span>
-                    <span class="phase-title">基础夯实</span>
-                    <span class="phase-duration">建议 5-7 天</span>
-                </div>
-                <div class="phase-content">
-                    <div class="phase-item">
-                        <span class="phase-icon">📚</span>
-                        <span>公共基础：算法、数据结构、栈队列、二叉树</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">💾</span>
-                        <span>公共基础：软件工程、数据库、E-R图</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">📝</span>
-                        <span>选择题速记：每天背30道高频考点</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">🏠</span>
-                        <span>Office基础：Word/Excel/PPT 基本操作熟悉</span>
-                    </div>
-                </div>
-                <div class="phase-goal">目标：选择题正确率 ≥ 60%</div>
+        <div class="countdown-banner">
+            <div class="countdown-item">
+                <span class="countdown-num" id="countdownDays">120</span>
+                <span class="countdown-label">天</span>
             </div>
-
-            <div class="plan-phase" data-phase="2">
-                <div class="phase-header">
-                    <span class="phase-tag">第二阶段</span>
-                    <span class="phase-title">专项突破</span>
-                    <span class="phase-duration">建议 7-10 天</span>
+            <div class="countdown-divider"></div>
+            <div class="countdown-info">
+                <div class="countdown-tip">💡 从现在开始，按计划复习，一次过级！</div>
+                <div class="countdown-progress">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="studyProgress" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text">已复习 <span id="progressPercent">0</span>%</span>
                 </div>
-                <div class="phase-content">
-                    <div class="phase-item">
-                        <span class="phase-icon">📄</span>
-                        <span>Word：样式、目录、页眉页脚、邮件合并</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">📊</span>
-                        <span>Excel：函数、筛选、透视表、图表（重点！）</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">🎨</span>
-                        <span>PPT：母版、动画、放映设置</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">✍️</span>
-                        <span>错题整理：记录每道错题的原因和知识点</span>
-                    </div>
-                </div>
-                <div class="phase-goal">目标：操作题能独立完成 80%</div>
             </div>
+        </div>
 
-            <div class="plan-phase" data-phase="3">
-                <div class="phase-header">
-                    <span class="phase-tag">第三阶段</span>
-                    <span class="phase-title">冲刺模拟</span>
-                    <span class="phase-duration">建议 5-7 天</span>
-                </div>
-                <div class="phase-content">
-                    <div class="phase-item">
-                        <span class="phase-icon">⏱️</span>
-                        <span>套题练习：严格计时，模拟真实考试环境</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">🔄</span>
-                        <span>查漏补缺：针对薄弱环节反复练习</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">🎯</span>
-                        <span>选择题：巩固高频考点，确保不丢分</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="phase-icon">💪</span>
-                        <span>操作提速：Word控制在25分钟内，Excel 30分钟</span>
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item current">
+                    <div class="timeline-marker">5月</div>
+                    <div class="timeline-content">
+                        <h4>📚 第一阶段：基础入门</h4>
+                        <p>熟悉Office三件套基本操作，攻克公共基础选择题</p>
+                        <div class="timeline-tags">
+                            <span class="tag">选择题速记</span>
+                            <span class="tag">Office基础</span>
+                        </div>
                     </div>
                 </div>
-                <div class="phase-goal">目标：整套题得分 ≥ 60分</div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">6月</div>
+                    <div class="timeline-content">
+                        <h4>🔨 第二阶段：技能强化</h4>
+                        <p>Word文档排版、Excel函数图表、PPT母版动画专项训练</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Word进阶</span>
+                            <span class="tag">Excel函数</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">7月</div>
+                    <div class="timeline-content">
+                        <h4>⚡ 第三阶段：综合提升</h4>
+                        <p>套题练习，错题整理，查漏补缺</p>
+                        <div class="timeline-tags">
+                            <span class="tag">套题训练</span>
+                            <span class="tag">提速练习</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">8月</div>
+                    <div class="timeline-content">
+                        <h4>🎯 第四阶段：冲刺模拟</h4>
+                        <p>全真模拟考试，复盘高频考点，冲刺60分</p>
+                        <div class="timeline-tags">
+                            <span class="tag">模拟考试</span>
+                            <span class="tag">重点回顾</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item exam">
+                    <div class="timeline-marker">9月</div>
+                    <div class="timeline-content">
+                        <h4>🏆 考试月</h4>
+                        <p>调整心态，从容应考，一次过级！</p>
+                        <div class="timeline-tags">
+                            <span class="tag exam-tag">💪 加油！</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="daily-schedule">
+            <h4>📋 每日学习计划</h4>
+            <div class="schedule-grid">
+                <div class="schedule-item">
+                    <span class="schedule-time">早上</span>
+                    <span class="schedule-task">选择题速记 30分钟</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">上午</span>
+                    <span class="schedule-task">操作题练习 60分钟</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">下午</span>
+                    <span class="schedule-task">错题复习 + 套题 90分钟</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">晚上</span>
+                    <span class="schedule-task">知识点回顾 30分钟</span>
+                </div>
             </div>
         </div>
 
@@ -2013,6 +2353,29 @@
             renderBankFilters();
             renderBank();
             updateBankStats();
+            updateCountdown();
+            updateTimelineProgress();
+        }
+
+        // 倒计时计算
+        function updateCountdown() {
+            const examDate = new Date('2026-09-01');
+            const today = new Date();
+            const diffTime = examDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('countdownDays').textContent = Math.max(0, diffDays);
+        }
+
+        // 更新时间轴进度
+        function updateTimelineProgress() {
+            const today = new Date();
+            const startDate = new Date('2026-05-01');
+            const examDate = new Date('2026-09-01');
+            const totalDays = (examDate - startDate) / (1000 * 60 * 60 * 24);
+            const passedDays = (today - startDate) / (1000 * 60 * 60 * 24);
+            const percent = Math.min(100, Math.max(0, Math.round((passedDays / totalDays) * 100)));
+            document.getElementById('studyProgress').style.width = percent + '%';
+            document.getElementById('progressPercent').textContent = percent;
         }
 
         // 题库功能
