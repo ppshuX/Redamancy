@@ -1842,9 +1842,9 @@
 
         <!-- 倒计时卡片 -->
         <div class="countdown-card">
-            <div class="countdown-bg"></div>
             <div class="countdown-body">
                 <div class="countdown-main">
+                    <div class="countdown-icon">⏰</div>
                     <div class="countdown-number" id="countdownDays">113</div>
                     <div class="countdown-unit">天</div>
                 </div>
@@ -2775,8 +2775,14 @@
                 selector.appendChild(btn);
             });
 
+            // 只初始化默认分类，不切换视图
             if (Object.keys(questionBank).length > 0) {
-                selectCategory(Object.keys(questionBank)[0]);
+                const defaultCategory = Object.keys(questionBank)[0];
+                currentCategory = defaultCategory;
+                cards = buildCards(defaultCategory);
+                currentIndex = 0;
+                isFlipped = false;
+                currentMode = `分类背诵：${defaultCategory}`;
             }
         }
 
