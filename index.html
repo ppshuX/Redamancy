@@ -49,7 +49,7 @@
             border: 1px solid #e5e7eb;
             border-radius: 8px;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 6px;
             margin: 0 auto 22px;
             max-width: 760px;
@@ -947,6 +947,295 @@
             display: flex;
             justify-content: space-around;
             font-size: 13px;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                background: #ffffff;
+                display: block;
+                padding: 0;
+            }
+
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+                min-height: 100vh;
+                padding: 14px;
+            }
+
+            h1 {
+                font-size: 21px;
+                line-height: 1.2;
+                margin: 8px 0 4px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+                line-height: 1.45;
+                margin-bottom: 12px;
+                padding: 0 8px;
+            }
+
+            .top-nav {
+                backdrop-filter: blur(8px);
+                background: rgba(248, 250, 252, 0.96);
+                border-left: 0;
+                border-radius: 0;
+                border-right: 0;
+                display: flex;
+                gap: 8px;
+                margin: 0 -14px 14px;
+                max-width: none;
+                overflow-x: auto;
+                padding: 8px 14px;
+                position: sticky;
+                scrollbar-width: none;
+                top: 0;
+                z-index: 20;
+            }
+
+            .top-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-btn {
+                flex: 0 0 auto;
+                font-size: 13px;
+                min-width: 82px;
+                padding: 9px 10px;
+                white-space: nowrap;
+            }
+
+            .hero-summary {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                margin-bottom: 14px;
+            }
+
+            .module-grid,
+            .practice-grid,
+            .quick-grid,
+            .overview-actions,
+            .study-tools,
+            .check-grid,
+            .bank-stats {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .summary-card,
+            .module-card,
+            .practice-card,
+            .quick-card,
+            .exam-panel,
+            .daily-checklist,
+            .bank-item {
+                border-radius: 8px;
+                padding: 12px;
+            }
+
+            .summary-card strong,
+            .module-card strong,
+            .practice-card strong,
+            .quick-card strong {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+
+            .summary-card span,
+            .module-card li,
+            .practice-card li,
+            .quick-card li {
+                font-size: 12px;
+                line-height: 1.55;
+            }
+
+            .section-title {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+                margin: 16px 0 8px;
+            }
+
+            .section-title strong {
+                font-size: 16px;
+            }
+
+            .section-title small {
+                font-size: 12px;
+                line-height: 1.45;
+            }
+
+            .quick-actions {
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                padding-bottom: 2px;
+                scrollbar-width: none;
+            }
+
+            .quick-actions::-webkit-scrollbar {
+                display: none;
+            }
+
+            .quick-actions .tool-btn {
+                flex: 0 0 auto;
+                min-width: 94px;
+            }
+
+            .tool-btn,
+            .mastery-btn,
+            .btn,
+            .btn-action,
+            .exam-option {
+                min-height: 42px;
+                font-size: 13px;
+            }
+
+            .resource-links {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .resource-links a {
+                text-align: center;
+            }
+
+            .exam-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .exam-actions,
+            .controls,
+            .action-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+            }
+
+            .exam-actions .tool-btn:last-child,
+            .controls .btn-mark,
+            .action-buttons .btn-action:last-child {
+                grid-column: 1 / -1;
+            }
+
+            .total-stats,
+            .stats {
+                gap: 6px;
+                padding: 10px 6px;
+            }
+
+            .total-stat .number,
+            .stat-number {
+                font-size: 18px;
+            }
+
+            .category-selector {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                margin: 0 -14px 12px;
+                overflow-x: auto;
+                padding: 0 14px 4px;
+                scrollbar-width: none;
+            }
+
+            .category-selector::-webkit-scrollbar {
+                display: none;
+            }
+
+            .category-btn {
+                flex: 0 0 auto;
+                font-size: 12px;
+                padding: 7px 11px;
+                white-space: nowrap;
+            }
+
+            .flashcard {
+                font-size: 15px;
+                line-height: 1.6;
+                min-height: 220px;
+                padding: 46px 18px 28px;
+            }
+
+            .card-type,
+            .card-number {
+                font-size: 11px;
+                top: 12px;
+            }
+
+            .card-type {
+                left: 12px;
+                max-width: 56%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .card-number {
+                right: 12px;
+            }
+
+            .mastery-controls {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .bank-total-info {
+                align-items: stretch;
+                display: grid;
+                gap: 8px;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .bank-filter {
+                flex-wrap: nowrap;
+                margin: 0 -14px 14px;
+                overflow-x: auto;
+                padding: 0 14px 4px;
+                scrollbar-width: none;
+            }
+
+            .bank-filter::-webkit-scrollbar {
+                display: none;
+            }
+
+            .bank-filter-btn {
+                flex: 0 0 auto;
+                white-space: nowrap;
+            }
+
+            .bank-category-title {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .bank-item-header,
+            .bank-item-footer,
+            .review-a {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-actions,
+            .controls,
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-actions .tool-btn:last-child,
+            .controls .btn-mark,
+            .action-buttons .btn-action:last-child {
+                grid-column: auto;
+            }
         }
     </style>
 </head>
